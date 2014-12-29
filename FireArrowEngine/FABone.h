@@ -1,0 +1,52 @@
+//
+//  FABone.h
+//  FireArrow
+//
+//  Created by Simon Nilsson on 14/09/14.
+//  Copyright (c) 2014 Axenu. All rights reserved.
+//
+
+#ifndef __FireArrow__FABone__
+#define __FireArrow__FABone__
+#define GLM_FORCE_RADIANS
+
+#include <stdio.h>
+#include <vector>
+#include <string>
+#include <glm/glm.hpp>
+
+class FABone {
+	
+private:
+	glm::vec3 position;
+	glm::vec3 rotation;
+	glm::vec3 scale;
+	glm::mat4 localMatrix, combinedMatrix;
+	std::string name;
+	FABone *parent;
+	std::vector<FABone *> children;
+	
+public:
+	FABone();
+	FABone(std::string _name, glm::vec3 _position);
+	
+	void addChild(FABone *child);
+	void setParent(FABone *_parent);
+	void setPosition(glm::vec3 _position);
+	void setRotation(glm::vec3 _rotation);
+	void setScale(glm::vec3 _scale);
+	void setName(std::string _name);
+	void setLocalMatrix(glm::mat4 matrix);
+	void setCombinedMatrix(glm::mat4 matrix);
+	
+	std::vector<FABone *> getChildren();
+	FABone *getParent();
+	glm::vec3 getPosition();
+	glm::vec3 getRotation();
+	glm::vec3 getScale();
+	std::string getName();
+	glm::mat4 getLocalMatrix();
+	glm::mat4 getCombinedMatrix();
+};
+
+#endif /* defined(__FireArrow__FABone__) */

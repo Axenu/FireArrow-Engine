@@ -10,9 +10,11 @@
 #define __FireArrow__FireArrow__
 
 #define GLM_FORCE_RADIANS
+#define GLFW_INCLUDE_GLCOREARB
 
 #include <GLFW/glfw3.h>
 #include <vector>
+#include <glm/glm.hpp>
 
 #pragma mark Colors
 

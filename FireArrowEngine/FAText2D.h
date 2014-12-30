@@ -9,6 +9,9 @@
 #ifndef __FireArrow__FAText2D__
 #define __FireArrow__FAText2D__
 
+#define GLFW_INCLUDE_GLCOREARB
+#include <GLFW/glfw3.h>
+
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -19,8 +22,9 @@
 #include "FAShader.h"
 #include "FANode.h"
 #include "FAFont.h"
+#include "FAHUDElement.h"
 
-class FAText2D : public FANode {
+class FAText2D : public FAHUDElement {
 private:
     GLuint myVBO;
     GLuint myEBO;

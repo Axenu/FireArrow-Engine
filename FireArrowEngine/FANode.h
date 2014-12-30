@@ -15,6 +15,7 @@
 #include "FATexture.h"
 #include "FAShader.h"
 #include "FAPrint.h"
+#include "FireArrow.h"
 
 #pragma mark Colors
 

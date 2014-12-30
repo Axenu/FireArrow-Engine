@@ -19,8 +19,8 @@ void FATexturedPlane2D::setShader(FAShader *shader) {
     
     glUseProgram(shader->shaderProgram);
     
-    textureLoc = glGetAttribLocation(shader->shaderProgram, "in_textureCoord");
-    positionLoc = glGetAttribLocation(shader->shaderProgram, "in_position");
+    textureLoc = glGetAttribLocation(shader->shaderProgram, "in_TextureCoord");
+    positionLoc = glGetAttribLocation(shader->shaderProgram, "in_Position");
     
     modelMatrixUniform = glGetUniformLocation(shader->shaderProgram, "modelMatrix");
     textureUniform = glGetUniformLocation(shader->shaderProgram, "text");
@@ -80,7 +80,6 @@ void FATexturedPlane2D::setTexture(GLuint text) {
 }
 
 void FATexturedPlane2D::onRender(FACamera *camera) {
-    
     glBindVertexArray(myVAO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
     glBindTexture(GL_TEXTURE_2D_ARRAY, texture);

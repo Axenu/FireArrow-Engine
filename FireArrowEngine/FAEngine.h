@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include <string>
-#include <glm/glm.hpp>
 
 #include "FireArrow.h"
 #include "FACamera.h"

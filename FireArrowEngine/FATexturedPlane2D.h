@@ -16,9 +16,9 @@
 //#include <fstream>
 //#include <string>
 #include "FAShader.h"
-#include "FANode.h"
+#include "FAHUDElement.h"
 
-class FATexturedPlane2D : public FANode {
+class FATexturedPlane2D : public FAHUDElement {
 private:
     GLuint myVBO;
     GLuint myEBO;
@@ -42,7 +42,7 @@ public:
     void setTexture(GLuint text);
     
 protected:
-    virtual void onRender(FACamera *amera);
+    virtual void onRender(FACamera *camera);
     virtual void onRender(FACamera *camera, GLuint texture, glm::mat4 textureMatrix);
     virtual void onUpdate(float dt, glm::mat4 m);
     

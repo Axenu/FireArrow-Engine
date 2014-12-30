@@ -8,7 +8,8 @@
 
 #ifndef __FireArrow__FAWireFrame__
 #define __FireArrow__FAWireFrame__
-
+#define GLFW_INCLUDE_GLCOREARB
+#include <GLFW/glfw3.h>
 #include <stdio.h>
 
 #include "FANode.h"

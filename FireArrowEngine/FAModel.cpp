@@ -18,39 +18,39 @@ FAModel::~FAModel() {
     //dealloc
 }
 
-void FAModel::setShader(FAShader _shader) {
+void FAModel::setShader(FAShader *shader) {
     shadowShader = FAShader("BasicWithShadows.vert", "BasicWithShadows.frag");
     
     glUseProgram(shadowShader.shaderProgram);
 	
 	positionLocShadow = glGetAttribLocation(shadowShader.shaderProgram, "in_Position");
-	ViewProjectionMatrixLocation = glGetUniformLocation(shadowShader.shaderProgram,"ViewProjectionMatrix");
+	viewProjectionMatrixLocation = glGetUniformLocation(shadowShader.shaderProgram,"viewProjectionMatrix");
     shadowModelMatrixLocation = glGetUniformLocation(shadowShader.shaderProgram,"modelMatrix");
 	
 	if(positionLocShadow == -1) {
 		std::cout << "error positionLocShadow" << std::endl;
 	}
-	if(ViewProjectionMatrixLocation == -1) {
-		std::cout << "error ViewProjectionMatrixLocation" << std::endl;
+	if(viewProjectionMatrixLocation == -1) {
+		std::cout << "error viewProjectionMatrixLocation" << std::endl;
 	}
     if(shadowModelMatrixLocation == -1) {
         std::cout << "error shadowModelMatrixLocation" << std::endl;
     }
 	
-	shader = FAShader("BasicShadow");
+	this->shader = new FAShader("BasicShadow");
 	
-	glUseProgram(shader.shaderProgram);
+	glUseProgram(this->shader->shaderProgram);
 	
-    positionLoc = glGetAttribLocation(shader.shaderProgram, "in_Position");
-    normalLoc = glGetAttribLocation(shader.shaderProgram, "in_Normal");
+    positionLoc = glGetAttribLocation(this->shader->shaderProgram, "in_Position");
+    normalLoc = glGetAttribLocation(this->shader->shaderProgram, "in_Normal");
 	
 		// Get matrices uniform locations
-    colorUniformLoc = glGetUniformLocation(shader.shaderProgram, "color");
-    projectionMatrixLocation = glGetUniformLocation(shader.shaderProgram,"projectionMatrix");
-    viewMatrixLocation = glGetUniformLocation(shader.shaderProgram, "viewMatrix");
-	modelMatrixLocation = glGetUniformLocation(shader.shaderProgram, "modelMatrix");
-	textureMatrixLocation = glGetUniformLocation(shader.shaderProgram, "textureMatrix");
-	shadowMapLocation = glGetUniformLocation(shader.shaderProgram, "shadowMap");
+    colorUniformLoc = glGetUniformLocation(this->shader->shaderProgram, "color");
+    projectionMatrixLocation = glGetUniformLocation(this->shader->shaderProgram,"projectionMatrix");
+    viewMatrixLocation = glGetUniformLocation(this->shader->shaderProgram, "viewMatrix");
+	modelMatrixLocation = glGetUniformLocation(this->shader->shaderProgram, "modelMatrix");
+	textureMatrixLocation = glGetUniformLocation(this->shader->shaderProgram, "textureMatrix");
+	shadowMapLocation = glGetUniformLocation(this->shader->shaderProgram, "shadowMap");
 	
 	
 	
@@ -82,7 +82,7 @@ void FAModel::setShader(FAShader _shader) {
 
 void FAModel::SetModel(std::vector<GLfloat> vertices, std::vector<GLushort> indices) {
     
-    if (shader.shaderProgram == 0) {
+    if (shader->shaderProgram == 0) {
         std::cout << "No valid shader for model" << std::endl;
         return;
     }
@@ -141,7 +141,7 @@ void FAModel::SetModel(std::string path) {
     
     FILE * file = fopen(path.c_str(), "r");
 	if( file == NULL ){
-		printf("Impossible to open the file!\n");
+        std::cout << "FAModel failed to open file: " << path << std::endl;
 		getchar();
 	}
     
@@ -302,7 +302,7 @@ void FAModel::onRender(FACamera *camera) {
 	glBindVertexArray(myVAO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
 	
-	glUseProgram(shader.shaderProgram);
+	glUseProgram(shader->shaderProgram);
 	
 	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, &camera->projectionMatrix[0][0]);
 	glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, &camera->viewMatrix[0][0]);
@@ -319,9 +319,10 @@ void FAModel::onRender(FACamera *camera) {
 }
 
 void FAModel::onRender(FACamera *camera, GLuint texture, std::vector<glm::mat4> &textureMatrix) {
+    
 	glBindVertexArray(myVAO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
-	glUseProgram(shader.shaderProgram);
+	glUseProgram(shader->shaderProgram);
 	glUniform1i(shadowMapLocation, 0);
 
 	glActiveTexture(GL_TEXTURE0);
@@ -336,7 +337,6 @@ void FAModel::onRender(FACamera *camera, GLuint texture, std::vector<glm::mat4> 
 	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_SHORT, NULL);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
-	
 	glUseProgram(0);
 }
 
@@ -348,7 +348,7 @@ void FAModel::onRenderShadow(glm::mat4 c) {
 	glUseProgram(shadowShader.shaderProgram);
 	
     glUniformMatrix4fv(shadowModelMatrixLocation, 1, GL_FALSE, &modelMatrix[0][0]);
-	glUniformMatrix4fv(ViewProjectionMatrixLocation, 1, GL_FALSE, &c[0][0]);
+	glUniformMatrix4fv(viewProjectionMatrixLocation, 1, GL_FALSE, &c[0][0]);
 	
 	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_SHORT, NULL);
 	

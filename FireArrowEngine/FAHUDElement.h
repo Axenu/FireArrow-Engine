@@ -34,6 +34,7 @@ protected:
     int id;
     
     virtual void onUpdate(float dt);
+    virtual void onRender(){}
 };
 
 #endif /* defined(__FireArrow__FAHUDElement__) */

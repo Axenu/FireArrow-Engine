@@ -196,7 +196,9 @@ void FASkeleton::SetFAModel(std::string path) {
 				std::cout << "Unknown character! asuming it's a comment: \"" << f << "\"" << std::endl;
 			}
 		}
-	}
+    } else {
+        std::cout << "FASkeleton failed to p[en model: " << path << std::endl;
+    }
 	rootBone = bones[0];
 	adjustPositions(rootBone, glm::vec3());
 	setupBoneMatrices(rootBone);

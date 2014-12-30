@@ -84,7 +84,7 @@ void FAPlane2D::onRender(FACamera *camera) {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
 	
 	glUseProgram(shader->shaderProgram);
-	glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, &(modelMatrix)[0][0]);
+	glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, &modelMatrix[0][0]);
 	glUniform4f(colorUniform, color.r, color.g, color.b, color.a);
 	
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, NULL);

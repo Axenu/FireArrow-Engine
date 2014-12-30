@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35551DBE1A52B6E6003EC9A8 /* Helvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35551DBD1A52B6E6003EC9A8 /* Helvetica.ttf */; };
+		35551DC11A52B736003EC9A8 /* Text2D.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35551DBF1A52B736003EC9A8 /* Text2D.frag */; };
+		35551DC21A52B736003EC9A8 /* Text2D.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35551DC01A52B736003EC9A8 /* Text2D.vert */; };
+		35551DC61A52BFFF003EC9A8 /* TexturedPlane2D.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35551DC51A52BFFF003EC9A8 /* TexturedPlane2D.frag */; };
+		35551DC81A52C009003EC9A8 /* TexturedPlane2D.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35551DC71A52C009003EC9A8 /* TexturedPlane2D.vert */; };
+		35B4B6651A5203580059C485 /* FATexturedPlane2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B4B6631A5203580059C485 /* FATexturedPlane2D.cpp */; };
 		35BA8E291A51CACF00C9122E /* FABBAA2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8DF41A51CACE00C9122E /* FABBAA2D.cpp */; };
 		35BA8E2A1A51CACF00C9122E /* FABone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8DF61A51CACE00C9122E /* FABone.cpp */; };
 		35BA8E2B1A51CACF00C9122E /* FAButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8DF81A51CACE00C9122E /* FAButton.cpp */; };
@@ -16,7 +22,6 @@
 		35BA8E2F1A51CACF00C9122E /* FAFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E001A51CACE00C9122E /* FAFont.cpp */; };
 		35BA8E301A51CACF00C9122E /* FAGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E021A51CACE00C9122E /* FAGame.cpp */; };
 		35BA8E311A51CACF00C9122E /* FAHUDElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E041A51CACE00C9122E /* FAHUDElement.cpp */; };
-		35BA8E321A51CACF00C9122E /* FAListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E061A51CACE00C9122E /* FAListener.cpp */; };
 		35BA8E331A51CACF00C9122E /* FAModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E081A51CACE00C9122E /* FAModel.cpp */; };
 		35BA8E341A51CACF00C9122E /* FANode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E0A1A51CACE00C9122E /* FANode.cpp */; };
 		35BA8E351A51CACF00C9122E /* FAPlane2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E0C1A51CACE00C9122E /* FAPlane2D.cpp */; };
@@ -31,7 +36,6 @@
 		35BA8E3E1A51CACF00C9122E /* FAText2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E1E1A51CACF00C9122E /* FAText2D.cpp */; };
 		35BA8E3F1A51CACF00C9122E /* FATextList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E201A51CACF00C9122E /* FATextList.cpp */; };
 		35BA8E401A51CACF00C9122E /* FATexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E221A51CACF00C9122E /* FATexture.cpp */; };
-		35BA8E411A51CACF00C9122E /* FATexturedPlane2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E241A51CACF00C9122E /* FATexturedPlane2D.cpp */; };
 		35BA8E421A51CACF00C9122E /* FAWireFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E261A51CACF00C9122E /* FAWireFrame.cpp */; };
 		35BA8E471A51CAEE00C9122E /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E431A51CAEE00C9122E /* Ground.cpp */; };
 		35BA8E481A51CAEE00C9122E /* shadowScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8E451A51CAEE00C9122E /* shadowScene.cpp */; };
@@ -42,21 +46,30 @@
 		35BA8E521A51CB9F00C9122E /* libglfw.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA8E4F1A51CB9F00C9122E /* libglfw.3.1.dylib */; };
 		35BA8E541A51CBCC00C9122E /* libILU.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA8E531A51CBCC00C9122E /* libILU.1.dylib */; };
 		35BA8E561A51CC0100C9122E /* libIL.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BA8E551A51CC0100C9122E /* libIL.1.dylib */; };
+		35BA8E651A51D07300C9122E /* Basic.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E5D1A51D07300C9122E /* Basic.frag */; };
+		35BA8E661A51D07300C9122E /* Basic.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E5E1A51D07300C9122E /* Basic.vert */; };
+		35BA8E671A51D07300C9122E /* BasicShadow.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E5F1A51D07300C9122E /* BasicShadow.frag */; };
+		35BA8E681A51D07300C9122E /* BasicShadow.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E601A51D07300C9122E /* BasicShadow.vert */; };
+		35BA8E691A51D07300C9122E /* BasicWithShadows.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E611A51D07300C9122E /* BasicWithShadows.frag */; };
+		35BA8E6A1A51D07300C9122E /* BasicWithShadows.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E621A51D07300C9122E /* BasicWithShadows.vert */; };
+		35BA8E6B1A51D07300C9122E /* Bone.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E631A51D07300C9122E /* Bone.frag */; };
+		35BA8E6C1A51D07300C9122E /* Bone.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E641A51D07300C9122E /* Bone.vert */; };
+		35BA8E6E1A51D1CF00C9122E /* Cube in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E6D1A51D1CF00C9122E /* Cube */; };
+		35BA8E701A51D27000C9122E /* dog v2.fa in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E6F1A51D27000C9122E /* dog v2.fa */; };
+		35BA8E731A51D29000C9122E /* Plane2D.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E711A51D29000C9122E /* Plane2D.frag */; };
+		35BA8E741A51D29000C9122E /* Plane2D.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35BA8E721A51D29000C9122E /* Plane2D.vert */; };
 		35FAE2EC1A516CF900B02672 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FAE2EB1A516CF900B02672 /* main.cpp */; };
 		35FAE2EE1A516CF900B02672 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FAE2ED1A516CF900B02672 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		35FAE2F71A516CF900B02672 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 35FAE2DB1A516CF900B02672 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 35FAE2E21A516CF900B02672;
-			remoteInfo = FireArrowEngine;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		35551DBD1A52B6E6003EC9A8 /* Helvetica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Helvetica.ttf; sourceTree = "<group>"; };
+		35551DBF1A52B736003EC9A8 /* Text2D.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Text2D.frag; sourceTree = "<group>"; };
+		35551DC01A52B736003EC9A8 /* Text2D.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Text2D.vert; sourceTree = "<group>"; };
+		35551DC51A52BFFF003EC9A8 /* TexturedPlane2D.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedPlane2D.frag; sourceTree = "<group>"; };
+		35551DC71A52C009003EC9A8 /* TexturedPlane2D.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedPlane2D.vert; sourceTree = "<group>"; };
+		35B4B6631A5203580059C485 /* FATexturedPlane2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FATexturedPlane2D.cpp; sourceTree = "<group>"; };
+		35B4B6641A5203580059C485 /* FATexturedPlane2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FATexturedPlane2D.h; sourceTree = "<group>"; };
 		35BA8DF41A51CACE00C9122E /* FABBAA2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FABBAA2D.cpp; sourceTree = "<group>"; };
 		35BA8DF51A51CACE00C9122E /* FABBAA2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FABBAA2D.h; sourceTree = "<group>"; };
 		35BA8DF61A51CACE00C9122E /* FABone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FABone.cpp; sourceTree = "<group>"; };
@@ -75,8 +88,6 @@
 		35BA8E031A51CACE00C9122E /* FAGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAGame.h; sourceTree = "<group>"; };
 		35BA8E041A51CACE00C9122E /* FAHUDElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FAHUDElement.cpp; sourceTree = "<group>"; };
 		35BA8E051A51CACE00C9122E /* FAHUDElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAHUDElement.h; sourceTree = "<group>"; };
-		35BA8E061A51CACE00C9122E /* FAListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FAListener.cpp; sourceTree = "<group>"; };
-		35BA8E071A51CACE00C9122E /* FAListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAListener.h; sourceTree = "<group>"; };
 		35BA8E081A51CACE00C9122E /* FAModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FAModel.cpp; sourceTree = "<group>"; };
 		35BA8E091A51CACE00C9122E /* FAModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAModel.h; sourceTree = "<group>"; };
 		35BA8E0A1A51CACE00C9122E /* FANode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FANode.cpp; sourceTree = "<group>"; };
@@ -105,8 +116,6 @@
 		35BA8E211A51CACF00C9122E /* FATextList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FATextList.h; sourceTree = "<group>"; };
 		35BA8E221A51CACF00C9122E /* FATexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FATexture.cpp; sourceTree = "<group>"; };
 		35BA8E231A51CACF00C9122E /* FATexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FATexture.h; sourceTree = "<group>"; };
-		35BA8E241A51CACF00C9122E /* FATexturedPlane2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FATexturedPlane2D.cpp; sourceTree = "<group>"; };
-		35BA8E251A51CACF00C9122E /* FATexturedPlane2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FATexturedPlane2D.h; sourceTree = "<group>"; };
 		35BA8E261A51CACF00C9122E /* FAWireFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FAWireFrame.cpp; sourceTree = "<group>"; };
 		35BA8E271A51CACF00C9122E /* FAWireFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAWireFrame.h; sourceTree = "<group>"; };
 		35BA8E281A51CACF00C9122E /* FireArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireArrow.h; sourceTree = "<group>"; };
@@ -121,12 +130,23 @@
 		35BA8E4F1A51CB9F00C9122E /* libglfw.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.1.dylib; path = /opt/local/lib/libglfw.3.1.dylib; sourceTree = "<absolute>"; };
 		35BA8E531A51CBCC00C9122E /* libILU.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libILU.1.dylib; path = /opt/local/lib/libILU.1.dylib; sourceTree = "<absolute>"; };
 		35BA8E551A51CC0100C9122E /* libIL.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.1.dylib; path = /opt/local/lib/libIL.1.dylib; sourceTree = "<absolute>"; };
+		35BA8E5D1A51D07300C9122E /* Basic.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Basic.frag; sourceTree = "<group>"; };
+		35BA8E5E1A51D07300C9122E /* Basic.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Basic.vert; sourceTree = "<group>"; };
+		35BA8E5F1A51D07300C9122E /* BasicShadow.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicShadow.frag; sourceTree = "<group>"; };
+		35BA8E601A51D07300C9122E /* BasicShadow.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicShadow.vert; sourceTree = "<group>"; };
+		35BA8E611A51D07300C9122E /* BasicWithShadows.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicWithShadows.frag; sourceTree = "<group>"; };
+		35BA8E621A51D07300C9122E /* BasicWithShadows.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicWithShadows.vert; sourceTree = "<group>"; };
+		35BA8E631A51D07300C9122E /* Bone.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Bone.frag; sourceTree = "<group>"; };
+		35BA8E641A51D07300C9122E /* Bone.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Bone.vert; sourceTree = "<group>"; };
+		35BA8E6D1A51D1CF00C9122E /* Cube */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube; sourceTree = "<group>"; };
+		35BA8E6F1A51D27000C9122E /* dog v2.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "dog v2.fa"; sourceTree = "<group>"; };
+		35BA8E711A51D29000C9122E /* Plane2D.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Plane2D.frag; sourceTree = "<group>"; };
+		35BA8E721A51D29000C9122E /* Plane2D.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Plane2D.vert; sourceTree = "<group>"; };
 		35FAE2E31A516CF900B02672 /* FireArrowEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireArrowEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FAE2E71A516CF900B02672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35FAE2EB1A516CF900B02672 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		35FAE2ED1A516CF900B02672 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		35FAE2F01A516CF900B02672 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		35FAE2F61A516CF900B02672 /* FireArrowEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FireArrowEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,16 +164,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		35FAE2F31A516CF900B02672 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35551DC31A52BCED003EC9A8 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				35BA8DF51A51CACE00C9122E /* FABBAA2D.h */,
+				35BA8DF71A51CACE00C9122E /* FABone.h */,
+				35BA8DF91A51CACE00C9122E /* FAButton.h */,
+				35BA8DFB1A51CACE00C9122E /* FACamera.h */,
+				35BA8DFD1A51CACE00C9122E /* FACheatTerminal.h */,
+				35BA8DFF1A51CACE00C9122E /* FAEngine.h */,
+				35BA8E011A51CACE00C9122E /* FAFont.h */,
+				35BA8E031A51CACE00C9122E /* FAGame.h */,
+				35BA8E051A51CACE00C9122E /* FAHUDElement.h */,
+				35BA8E091A51CACE00C9122E /* FAModel.h */,
+				35BA8E0B1A51CACE00C9122E /* FANode.h */,
+				35BA8E0D1A51CACE00C9122E /* FAPlane2D.h */,
+				35BA8E0F1A51CACE00C9122E /* FAPrint.h */,
+				35BA8E111A51CACE00C9122E /* FAQuaternion.h */,
+				35BA8E131A51CACE00C9122E /* FAScene.h */,
+				35BA8E151A51CACF00C9122E /* FAShader.h */,
+				35BA8E171A51CACF00C9122E /* FAShaderNode.h */,
+				35BA8E191A51CACF00C9122E /* FASize.h */,
+				35BA8E1B1A51CACF00C9122E /* FASkeleton.h */,
+				35BA8E1D1A51CACF00C9122E /* FASpatial.h */,
+				35BA8E1F1A51CACF00C9122E /* FAText2D.h */,
+				35BA8E211A51CACF00C9122E /* FATextList.h */,
+				35BA8E231A51CACF00C9122E /* FATexture.h */,
+				35B4B6641A5203580059C485 /* FATexturedPlane2D.h */,
+				35BA8E271A51CACF00C9122E /* FAWireFrame.h */,
+				35BA8E281A51CACF00C9122E /* FireArrow.h */,
+				35BA8E441A51CAEE00C9122E /* Ground.h */,
+				35BA8E461A51CAEE00C9122E /* shadowScene.h */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		35551DC41A52BD23003EC9A8 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				35BA8E431A51CAEE00C9122E /* Ground.cpp */,
+				35BA8E451A51CAEE00C9122E /* shadowScene.cpp */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 		35BA8E571A51CC1F00C9122E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,10 +225,67 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		35BA8E581A51D03100C9122E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				35BA8E591A51D04B00C9122E /* Fonts */,
+				35BA8E5A1A51D04B00C9122E /* Models */,
+				35BA8E5B1A51D04B00C9122E /* Shaders */,
+				35BA8E5C1A51D04B00C9122E /* Textures */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		35BA8E591A51D04B00C9122E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				35551DBD1A52B6E6003EC9A8 /* Helvetica.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		35BA8E5A1A51D04B00C9122E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				35BA8E6F1A51D27000C9122E /* dog v2.fa */,
+				35BA8E6D1A51D1CF00C9122E /* Cube */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		35BA8E5B1A51D04B00C9122E /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				35551DBF1A52B736003EC9A8 /* Text2D.frag */,
+				35551DC01A52B736003EC9A8 /* Text2D.vert */,
+				35BA8E711A51D29000C9122E /* Plane2D.frag */,
+				35BA8E721A51D29000C9122E /* Plane2D.vert */,
+				35BA8E5D1A51D07300C9122E /* Basic.frag */,
+				35BA8E5E1A51D07300C9122E /* Basic.vert */,
+				35BA8E5F1A51D07300C9122E /* BasicShadow.frag */,
+				35BA8E601A51D07300C9122E /* BasicShadow.vert */,
+				35BA8E611A51D07300C9122E /* BasicWithShadows.frag */,
+				35BA8E621A51D07300C9122E /* BasicWithShadows.vert */,
+				35BA8E631A51D07300C9122E /* Bone.frag */,
+				35BA8E641A51D07300C9122E /* Bone.vert */,
+				35551DC51A52BFFF003EC9A8 /* TexturedPlane2D.frag */,
+				35551DC71A52C009003EC9A8 /* TexturedPlane2D.vert */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		35BA8E5C1A51D04B00C9122E /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Textures;
+			sourceTree = "<group>";
+		};
 		35FAE2DA1A516CF900B02672 = {
 			isa = PBXGroup;
 			children = (
 				35FAE2E51A516CF900B02672 /* FireArrowEngine */,
+				35BA8E581A51D03100C9122E /* Resources */,
 				35BA8E571A51CC1F00C9122E /* Frameworks */,
 				35FAE2E41A516CF900B02672 /* Products */,
 			);
@@ -181,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				35FAE2E31A516CF900B02672 /* FireArrowEngine.app */,
-				35FAE2F61A516CF900B02672 /* FireArrowEngineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,63 +302,33 @@
 		35FAE2E51A516CF900B02672 /* FireArrowEngine */ = {
 			isa = PBXGroup;
 			children = (
-				35BA8E431A51CAEE00C9122E /* Ground.cpp */,
-				35BA8E441A51CAEE00C9122E /* Ground.h */,
-				35BA8E451A51CAEE00C9122E /* shadowScene.cpp */,
-				35BA8E461A51CAEE00C9122E /* shadowScene.h */,
+				35551DC41A52BD23003EC9A8 /* Game */,
 				35BA8DF41A51CACE00C9122E /* FABBAA2D.cpp */,
-				35BA8DF51A51CACE00C9122E /* FABBAA2D.h */,
 				35BA8DF61A51CACE00C9122E /* FABone.cpp */,
-				35BA8DF71A51CACE00C9122E /* FABone.h */,
 				35BA8DF81A51CACE00C9122E /* FAButton.cpp */,
-				35BA8DF91A51CACE00C9122E /* FAButton.h */,
 				35BA8DFA1A51CACE00C9122E /* FACamera.cpp */,
-				35BA8DFB1A51CACE00C9122E /* FACamera.h */,
 				35BA8DFC1A51CACE00C9122E /* FACheatTerminal.cpp */,
-				35BA8DFD1A51CACE00C9122E /* FACheatTerminal.h */,
 				35BA8DFE1A51CACE00C9122E /* FAEngine.cpp */,
-				35BA8DFF1A51CACE00C9122E /* FAEngine.h */,
 				35BA8E001A51CACE00C9122E /* FAFont.cpp */,
-				35BA8E011A51CACE00C9122E /* FAFont.h */,
 				35BA8E021A51CACE00C9122E /* FAGame.cpp */,
-				35BA8E031A51CACE00C9122E /* FAGame.h */,
 				35BA8E041A51CACE00C9122E /* FAHUDElement.cpp */,
-				35BA8E051A51CACE00C9122E /* FAHUDElement.h */,
-				35BA8E061A51CACE00C9122E /* FAListener.cpp */,
-				35BA8E071A51CACE00C9122E /* FAListener.h */,
 				35BA8E081A51CACE00C9122E /* FAModel.cpp */,
-				35BA8E091A51CACE00C9122E /* FAModel.h */,
 				35BA8E0A1A51CACE00C9122E /* FANode.cpp */,
-				35BA8E0B1A51CACE00C9122E /* FANode.h */,
 				35BA8E0C1A51CACE00C9122E /* FAPlane2D.cpp */,
-				35BA8E0D1A51CACE00C9122E /* FAPlane2D.h */,
 				35BA8E0E1A51CACE00C9122E /* FAPrint.cpp */,
-				35BA8E0F1A51CACE00C9122E /* FAPrint.h */,
 				35BA8E101A51CACE00C9122E /* FAQuaternion.cpp */,
-				35BA8E111A51CACE00C9122E /* FAQuaternion.h */,
 				35BA8E121A51CACE00C9122E /* FAScene.cpp */,
-				35BA8E131A51CACE00C9122E /* FAScene.h */,
 				35BA8E141A51CACE00C9122E /* FAShader.cpp */,
-				35BA8E151A51CACF00C9122E /* FAShader.h */,
 				35BA8E161A51CACF00C9122E /* FAShaderNode.cpp */,
-				35BA8E171A51CACF00C9122E /* FAShaderNode.h */,
 				35BA8E181A51CACF00C9122E /* FASize.cpp */,
-				35BA8E191A51CACF00C9122E /* FASize.h */,
 				35BA8E1A1A51CACF00C9122E /* FASkeleton.cpp */,
-				35BA8E1B1A51CACF00C9122E /* FASkeleton.h */,
 				35BA8E1C1A51CACF00C9122E /* FASpatial.cpp */,
-				35BA8E1D1A51CACF00C9122E /* FASpatial.h */,
 				35BA8E1E1A51CACF00C9122E /* FAText2D.cpp */,
-				35BA8E1F1A51CACF00C9122E /* FAText2D.h */,
 				35BA8E201A51CACF00C9122E /* FATextList.cpp */,
-				35BA8E211A51CACF00C9122E /* FATextList.h */,
 				35BA8E221A51CACF00C9122E /* FATexture.cpp */,
-				35BA8E231A51CACF00C9122E /* FATexture.h */,
-				35BA8E241A51CACF00C9122E /* FATexturedPlane2D.cpp */,
-				35BA8E251A51CACF00C9122E /* FATexturedPlane2D.h */,
+				35B4B6631A5203580059C485 /* FATexturedPlane2D.cpp */,
 				35BA8E261A51CACF00C9122E /* FAWireFrame.cpp */,
-				35BA8E271A51CACF00C9122E /* FAWireFrame.h */,
-				35BA8E281A51CACF00C9122E /* FireArrow.h */,
+				35551DC31A52BCED003EC9A8 /* headers */,
 				35FAE2ED1A516CF900B02672 /* Images.xcassets */,
 				35FAE2EF1A516CF900B02672 /* MainMenu.xib */,
 				35FAE2E61A516CF900B02672 /* Supporting Files */,
@@ -282,24 +365,6 @@
 			productReference = 35FAE2E31A516CF900B02672 /* FireArrowEngine.app */;
 			productType = "com.apple.product-type.application";
 		};
-		35FAE2F51A516CF900B02672 /* FireArrowEngineTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 35FAE3031A516CF900B02672 /* Build configuration list for PBXNativeTarget "FireArrowEngineTests" */;
-			buildPhases = (
-				35FAE2F21A516CF900B02672 /* Sources */,
-				35FAE2F31A516CF900B02672 /* Frameworks */,
-				35FAE2F41A516CF900B02672 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				35FAE2F81A516CF900B02672 /* PBXTargetDependency */,
-			);
-			name = FireArrowEngineTests;
-			productName = FireArrowEngineTests;
-			productReference = 35FAE2F61A516CF900B02672 /* FireArrowEngineTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -311,10 +376,6 @@
 				TargetAttributes = {
 					35FAE2E21A516CF900B02672 = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					35FAE2F51A516CF900B02672 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 35FAE2E21A516CF900B02672;
 					};
 				};
 			};
@@ -332,7 +393,6 @@
 			projectRoot = "";
 			targets = (
 				35FAE2E21A516CF900B02672 /* FireArrowEngine */,
-				35FAE2F51A516CF900B02672 /* FireArrowEngineTests */,
 			);
 		};
 /* End PBXProject section */
@@ -342,14 +402,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35BA8E731A51D29000C9122E /* Plane2D.frag in Resources */,
+				35BA8E6C1A51D07300C9122E /* Bone.vert in Resources */,
+				35BA8E651A51D07300C9122E /* Basic.frag in Resources */,
 				35FAE2EE1A516CF900B02672 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		35FAE2F41A516CF900B02672 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				35BA8E691A51D07300C9122E /* BasicWithShadows.frag in Resources */,
+				35551DC21A52B736003EC9A8 /* Text2D.vert in Resources */,
+				35BA8E741A51D29000C9122E /* Plane2D.vert in Resources */,
+				35BA8E6B1A51D07300C9122E /* Bone.frag in Resources */,
+				35551DC81A52C009003EC9A8 /* TexturedPlane2D.vert in Resources */,
+				35BA8E6A1A51D07300C9122E /* BasicWithShadows.vert in Resources */,
+				35551DC11A52B736003EC9A8 /* Text2D.frag in Resources */,
+				35551DBE1A52B6E6003EC9A8 /* Helvetica.ttf in Resources */,
+				35BA8E671A51D07300C9122E /* BasicShadow.frag in Resources */,
+				35BA8E701A51D27000C9122E /* dog v2.fa in Resources */,
+				35BA8E6E1A51D1CF00C9122E /* Cube in Resources */,
+				35BA8E681A51D07300C9122E /* BasicShadow.vert in Resources */,
+				35551DC61A52BFFF003EC9A8 /* TexturedPlane2D.frag in Resources */,
+				35BA8E661A51D07300C9122E /* Basic.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,15 +430,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35BA8E411A51CACF00C9122E /* FATexturedPlane2D.cpp in Sources */,
 				35BA8E3C1A51CACF00C9122E /* FASkeleton.cpp in Sources */,
 				35BA8E331A51CACF00C9122E /* FAModel.cpp in Sources */,
 				35BA8E2B1A51CACF00C9122E /* FAButton.cpp in Sources */,
 				35BA8E2F1A51CACF00C9122E /* FAFont.cpp in Sources */,
+				35B4B6651A5203580059C485 /* FATexturedPlane2D.cpp in Sources */,
 				35BA8E391A51CACF00C9122E /* FAShader.cpp in Sources */,
 				35BA8E381A51CACF00C9122E /* FAScene.cpp in Sources */,
 				35BA8E2A1A51CACF00C9122E /* FABone.cpp in Sources */,
-				35BA8E321A51CACF00C9122E /* FAListener.cpp in Sources */,
 				35BA8E351A51CACF00C9122E /* FAPlane2D.cpp in Sources */,
 				35BA8E3D1A51CACF00C9122E /* FASpatial.cpp in Sources */,
 				35BA8E401A51CACF00C9122E /* FATexture.cpp in Sources */,
@@ -392,22 +461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		35FAE2F21A516CF900B02672 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		35FAE2F81A516CF900B02672 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 35FAE2E21A516CF900B02672 /* FireArrowEngine */;
-			targetProxy = 35FAE2F71A516CF900B02672 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		35FAE2EF1A516CF900B02672 /* MainMenu.xib */ = {
@@ -510,6 +564,7 @@
 				INFOPLIST_FILE = FireArrowEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -527,43 +582,8 @@
 				INFOPLIST_FILE = FireArrowEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		35FAE3041A516CF900B02672 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = FireArrowEngineTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FireArrowEngine.app/Contents/MacOS/FireArrowEngine";
-			};
-			name = Debug;
-		};
-		35FAE3051A516CF900B02672 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = FireArrowEngineTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FireArrowEngine.app/Contents/MacOS/FireArrowEngine";
 			};
 			name = Release;
 		};
@@ -584,15 +604,6 @@
 			buildConfigurations = (
 				35FAE3011A516CF900B02672 /* Debug */,
 				35FAE3021A516CF900B02672 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		35FAE3031A516CF900B02672 /* Build configuration list for PBXNativeTarget "FireArrowEngineTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				35FAE3041A516CF900B02672 /* Debug */,
-				35FAE3051A516CF900B02672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

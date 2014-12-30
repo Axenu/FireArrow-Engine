@@ -12,7 +12,7 @@
 #include <stdio.h>
 #define GL_GLEXT_PROTOTYPES
 #define GLFW_INCLUDE_GLCOREARB
-//#include <GLFW/glfw3native.h>
+#include <GLFW/glfw3.h>
 
 #include "FAScene.h"
 #include "FAModel.h"
@@ -21,6 +21,7 @@
 #include "FAWireFrame.h"
 #include "FASkeleton.h"
 #include "FAButton.h"
+#include "FATexturedPlane2D.h"
 
 class shadowScene: public FAScene {
     
@@ -47,6 +48,8 @@ private:
 	FACamera *testCamera;
     FAWireFrame *wireFrame;
     FAWireFrame *shadowWireFrame;
+    
+    FATexturedPlane2D *plane;
     
     void setupShadowBuffer();
     glm::mat4 calculateShadowCamera(float near, float far);

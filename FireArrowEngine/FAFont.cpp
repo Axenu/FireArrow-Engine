@@ -43,9 +43,7 @@ FAFont::FAFont(const char *path, const int _fontSize, uint _windowWidth, uint _w
 	fontHeight = fontSize/windowHeight;
 	
 	std::ifstream ifile(path);
-	if (ifile) {
-		std::cout << "File exists!" << std::endl;
-	} else {
+	if (!ifile) {
 		std::cout << "File does not exists!" << std::endl;
 	}
 	

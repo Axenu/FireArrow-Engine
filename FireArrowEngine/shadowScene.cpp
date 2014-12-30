@@ -18,14 +18,14 @@ void shadowScene::setShadowQuality(float quality) {
 
 void shadowScene::init() {
 	globalLightDirection = glm::normalize(glm::vec3(1,-1,1));
-    shadowQuality = 1;
+    shadowQuality = 2;
     
     camera = new FACamera(40.0f, (float)windowWidth, windowHeigth, 0.1, 100);
     camera->setZ(0);
     camera->setY(0);
     camera->setX(0);
     
-    HUDcamera = new FACamera(1, 1);
+    HUDcamera = new FACamera(100,-100);
     
 	testCamera = new FACamera(40.0f, (float)windowWidth, windowHeigth, 0.1, 100);
 	testCamera->setZ(0);
@@ -35,7 +35,7 @@ void shadowScene::init() {
     
     
     FAModel *m = new FAModel();
-    m->setShader(FAShader("BasicShadow"));
+    m->setShader(new FAShader("BasicShadow"));
     m->SetModel("cube");
     m->setScale(1);
     m->setPos(glm::vec3(10,0.5,1));
@@ -43,7 +43,7 @@ void shadowScene::init() {
     addChild(m);
     
     m = new FAModel();
-    m->setShader(FAShader("BasicShadow"));
+    m->setShader(new FAShader("BasicShadow"));
     m->SetModel("cube");
     m->setScale(1);
     m->setPos(glm::vec3(-10,0.5,1));
@@ -62,21 +62,27 @@ void shadowScene::init() {
     g->setY(0);
     addChild(g);
     
-    FAButton *b = new FAButton();
-    b->setShader(shaders->getShader("Plane2D"));
-    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
-    b->setSize(0.9, 0.5);
-    b->setID(3);
-    b->setPos(glm::vec3(0,0,-100));
-    addHUDElement(b);
+//    FAButton *b = new FAButton();
+//    b->setShader(shaders->getShader("Plane2D"));
+//    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
+//    b->setSize(0.9, 0.5);
+//    b->setID(3);
+//    b->setPos(glm::vec3(0,0,-1));
+//    addHUDElement(b);
+//    
+//    b = new FAButton();
+//    b->setShader(shaders->getShader("Plane2D"));
+//    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
+//    b->setSize(0.4, 0.5);
+//    b->setID(5);
+//    b->setPos(glm::vec3(0,0,1));
+//    addHUDElement(b);
     
-    b = new FAButton();
-    b->setShader(shaders->getShader("Plane2D"));
-    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
-    b->setSize(0.4, 0.5);
-    b->setID(5);
-    b->setPos(glm::vec3(0,0,100));
-    addHUDElement(b);
+    plane = new FATexturedPlane2D();
+    plane->setShader(new FAShader("TexturedPlane2D"));
+//    plane->setScale(100);
+//    plane->
+    addHUDElement(plane);
     
 //    showWireFrames();
     
@@ -262,7 +268,7 @@ void shadowScene::render() {
     
     
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-    glViewport(0, 0, windowWidth, windowHeigth);
+    glViewport(0, 0, windowWidth*2, windowHeigth*2);
     glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     
     glEnable(GL_POLYGON_OFFSET_FILL);
@@ -272,6 +278,8 @@ void shadowScene::render() {
     
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     
+    
+    plane->setTexture(shadowMap);
     camera->useView();
     for(FANode *node : children)
         node->render(camera, shadowMap, inverseShadowMatrix);

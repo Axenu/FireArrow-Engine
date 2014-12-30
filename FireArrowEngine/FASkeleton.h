@@ -9,7 +9,8 @@
 #ifndef __FireArrow__FASkeleton__
 #define __FireArrow__FASkeleton__
 #define GLM_FORCE_RADIANS
-
+#define GLFW_INCLUDE_GLCOREARB
+#include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <vector>
 #include <glm/glm.hpp>

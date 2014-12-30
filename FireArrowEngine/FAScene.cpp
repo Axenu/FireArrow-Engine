@@ -71,14 +71,14 @@ void FAScene::addHUDElement(FAHUDElement* node) {
 
 void FAScene::onInit() {
     
-//    displayFps = true;
-//    
-//    FAFont *font = new FAFont("Helvetica.ttf", 20, windowWidth, windowHeigth);
-//    fpsText = new FAText2D(font);
-//    fpsText->setShader( new FAShader("Text2D"));
-//    fpsText->setText("fps: 60");
-//    fpsText->setPos(glm::vec3(-0.99,0.95,0));
-//    addHUDElement(fpsText);
+    displayFps = true;
+    
+    FAFont *font = new FAFont("Helvetica.ttf", 20, windowWidth, windowHeigth);
+    fpsText = new FAText2D(font);
+    fpsText->setShader( new FAShader("Text2D"));
+    fpsText->setText("fps: 60");
+    fpsText->setPos(glm::vec3(-0.99,0.95,0));
+    addHUDElement(fpsText);
     
     this->init();
 }

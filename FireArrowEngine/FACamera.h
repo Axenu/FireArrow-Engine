@@ -9,12 +9,7 @@
 #ifndef __FireArrow__FACamera__
 #define __FireArrow__FACamera__
 
-#define GLFW_INCLUDE_GLCOREARB
-#define GLM_FORCE_RADIANS
-
 #include <iostream>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
 //#include <glm/gtc/>
 //#include <glm/gtc/matrix_transform.hpp>
 

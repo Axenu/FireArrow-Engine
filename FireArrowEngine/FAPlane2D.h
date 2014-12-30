@@ -9,10 +9,10 @@
 #ifndef __FireArrow__FAPlane2D__
 #define __FireArrow__FAPlane2D__
 
+#define GLFW_INCLUDE_GLCOREARB
+#include <GLFW/glfw3.h>
+
 #include <iostream>
-//#include <vector>
-//#include <fstream>
-//#include <string>
 #include "FAHUDElement.h"
 
 class FAPlane2D : public FAHUDElement {

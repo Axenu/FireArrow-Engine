@@ -30,13 +30,12 @@ private:
     GLuint colorUniformLoc;
 	GLuint positionLocShadow;
     glm::vec4 color;
-    FAShader shader;
 	FAShader shadowShader;
     GLushort numberOfVertices;
     GLint projectionMatrixLocation;
     GLint viewMatrixLocation;
     GLint modelMatrixLocation;
-	GLint ViewProjectionMatrixLocation;
+	GLint viewProjectionMatrixLocation;
     GLint shadowModelMatrixLocation;
 	GLint textureMatrixLocation;
 	GLint shadowMapLocation;
@@ -47,7 +46,7 @@ public:
     
     FAModel();
     ~FAModel();
-    void setShader(FAShader _shader);
+    void setShader(FAShader *shader);
     void SetModel(std::vector<GLfloat> vertices, std::vector<GLushort> indices);
     void SetModel(std::string path);
 	void SetFAModel(std::string path);

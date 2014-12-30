@@ -1,12 +1,12 @@
 #version 400 core
 
-uniform vec4 color;
 uniform sampler2DArray shadowMap;
 uniform mat4 modelMatrix;
 uniform mat4 textureMatrix[4];
 uniform mat4 viewMatrix;
 
 in vec3 pass_Normal;
+in vec3 pass_Color;
 in vec3 pass_position;
 in vec4 pass_shadowCoordinate;
 
@@ -29,20 +29,20 @@ void main() {
     }
     
     float shadow = 1.0;
-    
     if (index != -1) {
         vec4 shadowCoordinateWdivide = (textureMatrix[index] * pass_shadowCoordinate) / pass_shadowCoordinate.w ;
-        float diff = 0.0000;
-        float dist = texture(shadowMap,vec3(shadowCoordinateWdivide.st + vec2(diff,diff), index)).r;
-            if (dist > 0) {
-                if (pass_shadowCoordinate.w > 0.0) {
-                    if (dist - 0.000001 < shadowCoordinateWdivide.z)
-                        shadow =  0.5;
-                }
+        
+        float distanceFromLight = texture(shadowMap,vec3(shadowCoordinateWdivide.st, index)).r;
+        
+        if (distanceFromLight > 0) {
+            if (pass_shadowCoordinate.w > 0.0) {
+                if (distanceFromLight - 0.000001 < shadowCoordinateWdivide.z)
+                    shadow =  0.5;
             }
+        }
     }
     
-    frag_data = vec4(color * shadow);
+    frag_data = vec4(vec4(pass_Color, 1) * shadow);
     frag_data.w = 1.0;
     
 }

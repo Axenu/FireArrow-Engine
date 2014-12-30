@@ -12,6 +12,9 @@
 		35551DC21A52B736003EC9A8 /* Text2D.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35551DC01A52B736003EC9A8 /* Text2D.vert */; };
 		35551DC61A52BFFF003EC9A8 /* TexturedPlane2D.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35551DC51A52BFFF003EC9A8 /* TexturedPlane2D.frag */; };
 		35551DC81A52C009003EC9A8 /* TexturedPlane2D.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35551DC71A52C009003EC9A8 /* TexturedPlane2D.vert */; };
+		35551DCA1A531B57003EC9A8 /* barrel.fa in Resources */ = {isa = PBXBuildFile; fileRef = 35551DC91A531B57003EC9A8 /* barrel.fa */; };
+		35551DCC1A533ED7003EC9A8 /* FA.vert in Resources */ = {isa = PBXBuildFile; fileRef = 35551DCB1A533ED7003EC9A8 /* FA.vert */; };
+		35551DCE1A533EE2003EC9A8 /* FA.frag in Resources */ = {isa = PBXBuildFile; fileRef = 35551DCD1A533EE2003EC9A8 /* FA.frag */; };
 		35B4B6651A5203580059C485 /* FATexturedPlane2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35B4B6631A5203580059C485 /* FATexturedPlane2D.cpp */; };
 		35BA8E291A51CACF00C9122E /* FABBAA2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8DF41A51CACE00C9122E /* FABBAA2D.cpp */; };
 		35BA8E2A1A51CACF00C9122E /* FABone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BA8DF61A51CACE00C9122E /* FABone.cpp */; };
@@ -68,6 +71,9 @@
 		35551DC01A52B736003EC9A8 /* Text2D.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Text2D.vert; sourceTree = "<group>"; };
 		35551DC51A52BFFF003EC9A8 /* TexturedPlane2D.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedPlane2D.frag; sourceTree = "<group>"; };
 		35551DC71A52C009003EC9A8 /* TexturedPlane2D.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TexturedPlane2D.vert; sourceTree = "<group>"; };
+		35551DC91A531B57003EC9A8 /* barrel.fa */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = barrel.fa; sourceTree = "<group>"; };
+		35551DCB1A533ED7003EC9A8 /* FA.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FA.vert; sourceTree = "<group>"; };
+		35551DCD1A533EE2003EC9A8 /* FA.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FA.frag; sourceTree = "<group>"; };
 		35B4B6631A5203580059C485 /* FATexturedPlane2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FATexturedPlane2D.cpp; sourceTree = "<group>"; };
 		35B4B6641A5203580059C485 /* FATexturedPlane2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FATexturedPlane2D.h; sourceTree = "<group>"; };
 		35BA8DF41A51CACE00C9122E /* FABBAA2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FABBAA2D.cpp; sourceTree = "<group>"; };
@@ -247,6 +253,7 @@
 		35BA8E5A1A51D04B00C9122E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				35551DC91A531B57003EC9A8 /* barrel.fa */,
 				35BA8E6F1A51D27000C9122E /* dog v2.fa */,
 				35BA8E6D1A51D1CF00C9122E /* Cube */,
 			);
@@ -270,6 +277,8 @@
 				35BA8E641A51D07300C9122E /* Bone.vert */,
 				35551DC51A52BFFF003EC9A8 /* TexturedPlane2D.frag */,
 				35551DC71A52C009003EC9A8 /* TexturedPlane2D.vert */,
+				35551DCD1A533EE2003EC9A8 /* FA.frag */,
+				35551DCB1A533ED7003EC9A8 /* FA.vert */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -413,11 +422,14 @@
 				35551DC81A52C009003EC9A8 /* TexturedPlane2D.vert in Resources */,
 				35BA8E6A1A51D07300C9122E /* BasicWithShadows.vert in Resources */,
 				35551DC11A52B736003EC9A8 /* Text2D.frag in Resources */,
+				35551DCA1A531B57003EC9A8 /* barrel.fa in Resources */,
+				35551DCE1A533EE2003EC9A8 /* FA.frag in Resources */,
 				35551DBE1A52B6E6003EC9A8 /* Helvetica.ttf in Resources */,
 				35BA8E671A51D07300C9122E /* BasicShadow.frag in Resources */,
 				35BA8E701A51D27000C9122E /* dog v2.fa in Resources */,
 				35BA8E6E1A51D1CF00C9122E /* Cube in Resources */,
 				35BA8E681A51D07300C9122E /* BasicShadow.vert in Resources */,
+				35551DCC1A533ED7003EC9A8 /* FA.vert in Resources */,
 				35551DC61A52BFFF003EC9A8 /* TexturedPlane2D.frag in Resources */,
 				35BA8E661A51D07300C9122E /* Basic.vert in Resources */,
 			);

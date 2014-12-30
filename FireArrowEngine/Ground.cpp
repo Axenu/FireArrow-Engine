@@ -98,12 +98,13 @@ Ground::Ground() {
 		}
 	}
 	FAModel *m = new FAModel();
-	FAShader *s = new FAShader("Basic.vert","Basic.frag");
-	m->setShader(s);
+    m->setColorAttribute(false);
+    m->setPositionAttribute(true);
+    m->setNormalAttribute(true);
+	m->setShader(new FAShader("BasicShadow"));
 	m->SetModel(vert, indices);
 	m->setColor(FAColorDarkGreen);
 	addNode(m);
-	delete s;
 }
 
 float Ground::randomDiff() {

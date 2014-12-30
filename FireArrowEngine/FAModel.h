@@ -25,10 +25,11 @@ private:
     GLuint myVAO;
 	GLuint myShadowVBO;
 	GLuint myShadowVAO;
-    GLuint positionLoc;
-    GLuint normalLoc;
-    GLuint colorUniformLoc;
-	GLuint positionLocShadow;
+    GLint positionLocation;
+    GLint normalLocation;
+    GLint colorLocation;
+    GLint colorUniformLoc;
+	GLint positionLocShadow;
     glm::vec4 color;
 	FAShader shadowShader;
     GLushort numberOfVertices;
@@ -39,6 +40,12 @@ private:
     GLint shadowModelMatrixLocation;
 	GLint textureMatrixLocation;
 	GLint shadowMapLocation;
+    
+    bool positionAttribute = false;
+    bool normalAttribute = false;
+    bool colorAttribute = false;
+    
+    GLint attributes = 0;
 	
 	std::vector<float> getVerticeArray(std::ifstream file, int numberOfVertices);
 	
@@ -52,6 +59,9 @@ public:
 	void SetFAModel(std::string path);
 	void SetXModel(std::string path);
     void setColor(glm::vec4 c);
+    void setPositionAttribute(bool b);
+    void setNormalAttribute(bool b);
+    void setColorAttribute(bool b);
     
 protected:
 	virtual void onRender(FACamera *camera);

@@ -24,6 +24,7 @@ void FATexturedPlane2D::setShader(FAShader *shader) {
     
     modelMatrixUniform = glGetUniformLocation(shader->shaderProgram, "modelMatrix");
     textureUniform = glGetUniformLocation(shader->shaderProgram, "text");
+    layeruniform = glGetUniformLocation(shader->shaderProgram, "layer");
     
     if(textureLoc == -1) {
         std::cout << "error textureLoc" << std::endl;
@@ -78,6 +79,9 @@ void FATexturedPlane2D::setShader(FAShader *shader) {
 void FATexturedPlane2D::setTexture(GLuint text) {
     texture = text;
 }
+void FATexturedPlane2D::setLayer(int i) {
+    layer = i;
+}
 
 void FATexturedPlane2D::onRender(FACamera *camera) {
     glBindVertexArray(myVAO);
@@ -88,6 +92,7 @@ void FATexturedPlane2D::onRender(FACamera *camera) {
     
     glUniform1i(textureUniform, 0);
     glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, &modelMatrix[0][0]);
+    glUniform1i(layeruniform, layer);
     
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, NULL);
     

@@ -49,7 +49,10 @@ private:
     FAWireFrame *wireFrame;
     FAWireFrame *shadowWireFrame;
     
-    FATexturedPlane2D *plane;
+    FATexturedPlane2D *plane1;
+    FATexturedPlane2D *plane2;
+    FATexturedPlane2D *plane3;
+    FATexturedPlane2D *plane4;
     
     void setupShadowBuffer();
     glm::mat4 calculateShadowCamera(float near, float far);

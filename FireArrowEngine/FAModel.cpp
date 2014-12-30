@@ -37,12 +37,13 @@ void FAModel::setShader(FAShader *shader) {
         std::cout << "error shadowModelMatrixLocation" << std::endl;
     }
 	
-	this->shader = new FAShader("BasicShadow");
+	this->shader = shader;
 	
 	glUseProgram(this->shader->shaderProgram);
 	
-    positionLoc = glGetAttribLocation(this->shader->shaderProgram, "in_Position");
-    normalLoc = glGetAttribLocation(this->shader->shaderProgram, "in_Normal");
+    positionLocation = glGetAttribLocation(this->shader->shaderProgram, "in_Position");
+    normalLocation = glGetAttribLocation(this->shader->shaderProgram, "in_Normal");
+    colorLocation = glGetAttribLocation(this->shader->shaderProgram, "in_Color");
 	
 		// Get matrices uniform locations
     colorUniformLoc = glGetUniformLocation(this->shader->shaderProgram, "color");
@@ -54,12 +55,15 @@ void FAModel::setShader(FAShader *shader) {
 	
 	
 	
-	if(positionLoc == -1) {
-		std::cout << "error positionLoc" << std::endl;
+	if(positionLocation == -1) {
+		std::cout << "error positionLocation" << std::endl;
 	}
-	if(normalLoc == -1) {
-		std::cout << "error normalLoc" << std::endl;
+	if(normalLocation == -1) {
+		std::cout << "error normalLocation" << std::endl;
 	}
+    if(colorLocation == -1) {
+        std::cout << "error colorLocation" << std::endl;
+    }
 	if(colorUniformLoc == -1) {
 		std::cout << "error colorUniformLoc" << std::endl;
 	}
@@ -102,12 +106,25 @@ void FAModel::SetModel(std::vector<GLfloat> vertices, std::vector<GLushort> indi
     glGenVertexArrays(1, &myVAO);
     glBindVertexArray(myVAO);
     
-    glEnableVertexAttribArray(positionLoc);
-    glEnableVertexAttribArray(normalLoc);
-    
     glBindBuffer(GL_ARRAY_BUFFER, myVBO);
-    glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid *) (0 * sizeof(GLfloat)));
-    glVertexAttribPointer(normalLoc, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid *) (3 * sizeof(GLfloat)));
+    if (positionAttribute) attributes +=3;
+    if (normalAttribute) attributes +=3;
+    if (colorAttribute) attributes +=3;
+    
+    glEnableVertexAttribArray(positionLocation);
+    glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, attributes * sizeof(GLfloat), (GLvoid *) (0 * sizeof(GLfloat)));
+    int offset = 3;
+    if (normalAttribute) {
+        glEnableVertexAttribArray(normalLocation);
+        glVertexAttribPointer(normalLocation, 3, GL_FLOAT, GL_FALSE, attributes * sizeof(GLfloat), (GLvoid *) (offset * sizeof(GLfloat)));
+        offset += 3;
+    }
+    if (colorAttribute) {
+        glEnableVertexAttribArray(colorLocation);
+        glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, attributes * sizeof(GLfloat), (GLvoid *) (offset * sizeof(GLfloat)));
+    }
+    
+    
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 	
@@ -123,7 +140,7 @@ void FAModel::SetModel(std::vector<GLfloat> vertices, std::vector<GLushort> indi
 	glEnableVertexAttribArray(positionLocShadow);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, myShadowVBO);
-	glVertexAttribPointer(positionLocShadow, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid *) (0 * sizeof(GLfloat)));
+	glVertexAttribPointer(positionLocShadow, 3, GL_FLOAT, GL_FALSE, attributes * sizeof(GLfloat), (GLvoid *) (0 * sizeof(GLfloat)));
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
@@ -154,10 +171,12 @@ void FAModel::SetModel(std::string path) {
 			break;
 		
 		if ( strcmp( lineHeader, "v" ) == 0 ){
+            positionAttribute = true;
 			glm::vec3 vertex;
 			fscanf(file, "%f %f %f\n", &vertex.x, &vertex.y, &vertex.z );
 			temp_vertices.push_back(vertex);
 		}else if ( strcmp( lineHeader, "vn" ) == 0 ){
+            normalAttribute = true;
 			glm::vec3 normal;
 			fscanf(file, "%f %f %f\n", &normal.x, &normal.y, &normal.z );
 			temp_normals.push_back(normal);
@@ -211,90 +230,119 @@ void FAModel::SetModel(std::string path) {
 }
 
 void FAModel::SetFAModel(std::string path) {
-	std::ifstream file (path);
-	if (file.is_open()) {
-		
-		std::vector<glm::vec3> vertexArray;
-		std::vector<float> normalArray;
-		std::vector<GLfloat> vertices;
-		std::vector<GLushort> indices;
-		while (!file.eof()) {
-			std::string f;
-			int count;
-			file >> f;
-			if (f == "v") {
-				file >> count;
-				std::cout << count << " number of vertices" << std::endl;
-				vertexArray = std::vector<glm::vec3>();
-				for (int i = 0; i < count; i++) {
-					glm::vec3 vec;
-					file >> vec.x >> vec.y >> vec.z;
-					vertexArray.push_back(vec);
-				}
-			} else if (f == "n") {
-				file >> count;
-				std::cout << count << " number of normals" << std::endl;
-				normalArray = std::vector<float> ();
-				for (int i = 0; i < count; i++) {
-					float v1, v2, v3;
-					file >> v1 >> v2 >> v3;
-					std::cout << v1 << std::endl;
-					std::cout << v2 << std::endl;
-					std::cout << v3 << std::endl;
-					normalArray.push_back(v1);
-					normalArray.push_back(v2);
-					normalArray.push_back(v3);
-				}
-			} else if (f == "i") {
-				file >> count;
-				std::cout << count << " number of indices" << std::endl;
-				indices = std::vector<GLushort> ();
-				vertices = std::vector<GLfloat> ();
-				for (int i = 0; i < count * 3; i++) {
-					indices.push_back(i);
-				}
-				for (int i = 0; i < count; i++) {
-					float v1, v2, v3, n;
-					file >> v1;
-					std::cout << v1 << std::endl;
-					file >> v2;
-					std::cout << v2 << std::endl;
-					file >> v3;
-					std::cout << v3 << std::endl;
-					file >> n;
-					std::cout << n << std::endl;
-					
-					vertices.push_back(vertexArray[v1].x);
-					vertices.push_back(vertexArray[v1].y);
-					vertices.push_back(vertexArray[v1].z);
-					vertices.push_back(normalArray[n * 3]);
-					vertices.push_back(normalArray[n * 3 + 1]);
-					vertices.push_back(normalArray[n * 3 + 2]);
-					
-					vertices.push_back(vertexArray[v2].x);
-					vertices.push_back(vertexArray[v2].y);
-					vertices.push_back(vertexArray[v2].z);
-					vertices.push_back(normalArray[n * 3]);
-					vertices.push_back(normalArray[n * 3 + 1]);
-					vertices.push_back(normalArray[n * 3 + 2]);
-					
-					vertices.push_back(vertexArray[v3].x);
-					vertices.push_back(vertexArray[v3].y);
-					vertices.push_back(vertexArray[v3].z);
-					vertices.push_back(normalArray[n * 3]);
-					vertices.push_back(normalArray[n * 3 + 1]);
-					vertices.push_back(normalArray[n * 3 + 2]);
-				}
-			} else {
-				std::cout << "Unknown character! asuming it's a comment: \"" << f << "\"" << std::endl;
-			}
-		}
-		SetModel(vertices, indices);
-	}
+    std::ifstream file (path);
+    std::vector<glm::vec3> vertexArray;
+    std::vector<glm::vec3> normalArray;
+    std::vector<int> colorArray;
+    std::vector<glm::vec3> materialArray;
+    std::vector<GLfloat> vertices;
+    std::vector<GLushort> indices;
+    
+    if (file.is_open() && file.is_open()) {
+        
+        while (!file.eof()) {
+            
+            std::string f;
+            int count;
+            file >> f;
+            if (f == "v") {
+                positionAttribute = true;
+                file >> count;
+                vertexArray = std::vector<glm::vec3>();
+                glm::vec3 vec;
+                for (int i = 0; i < count; i++) {
+                    file >> vec.x >> vec.y >> vec.z;
+                    vertexArray.push_back(vec);
+                }
+            } else if (f == "n") {
+                normalAttribute  =true;
+                file >> count;
+                normalArray = std::vector<glm::vec3> ();
+                glm::vec3 normal;
+                for (int i = 0; i < count; i++) {
+                    file >> normal.x >> normal.y >> normal.z;
+                    normalArray.push_back(normal);
+                }
+            } else if (f == "c") {
+                colorAttribute = true;
+                file >> count;
+                int index;
+                for (int i = 0; i < count; i++) {
+                    file >> index;
+                    colorArray.push_back(index);
+                }
+            } else if (f == "m") {
+                file >> count;
+                glm::vec3 color;
+                for (int i = 0; i < count; i++) {
+                    file >> color.x >> color.y >> color.z;
+                    materialArray.push_back(color);
+                }
+            } else if (f == "i") {
+                file >> count;
+                indices = std::vector<GLushort> ();
+                vertices = std::vector<GLfloat> ();
+                for (int i = 0; i < count * 3; i++) {
+                    indices.push_back(i);
+                }
+                float v1, v2, v3, n;
+                for (int i = 0; i < count; i++) {
+                    file >> v1 >> v2 >> v3 >> n;
+                    
+                    int face = colorArray[n];
+                    
+                    vertices.push_back(vertexArray[v1].x);
+                    vertices.push_back(vertexArray[v1].y);
+                    vertices.push_back(vertexArray[v1].z);
+                    vertices.push_back(normalArray[n].x);
+                    vertices.push_back(normalArray[n].y);
+                    vertices.push_back(normalArray[n].z);
+                    vertices.push_back(materialArray[face].x);
+                    vertices.push_back(materialArray[face].y);
+                    vertices.push_back(materialArray[face].z);
+                    
+                    vertices.push_back(vertexArray[v2].x);
+                    vertices.push_back(vertexArray[v2].y);
+                    vertices.push_back(vertexArray[v2].z);
+                    vertices.push_back(normalArray[n].x);
+                    vertices.push_back(normalArray[n].y);
+                    vertices.push_back(normalArray[n].z);
+                    vertices.push_back(materialArray[face].x);
+                    vertices.push_back(materialArray[face].y);
+                    vertices.push_back(materialArray[face].z);
+                    
+                    vertices.push_back(vertexArray[v3].x);
+                    vertices.push_back(vertexArray[v3].y);
+                    vertices.push_back(vertexArray[v3].z);
+                    vertices.push_back(normalArray[n].x);
+                    vertices.push_back(normalArray[n].y);
+                    vertices.push_back(normalArray[n].z);
+                    vertices.push_back(materialArray[face].x);
+                    vertices.push_back(materialArray[face].y);
+                    vertices.push_back(materialArray[face].z);
+                }
+            } else {
+                std::cout << "Unknown character! asuming it's a comment: \"" << f << "\"" << std::endl;
+            }
+        }
+    } else {
+        std::cout << "FAModel failed to load model: " << path << std::endl;
+    }
+    SetModel(vertices, indices);
 }
 
 void FAModel::setColor(glm::vec4 c) {
     color = c;
+}
+
+void FAModel::setPositionAttribute(bool b) {
+    this->positionAttribute = b;
+}
+void FAModel::setNormalAttribute(bool b) {
+    this->normalAttribute = b;
+}
+void FAModel::setColorAttribute(bool b) {
+    this->colorAttribute = b;
 }
 
 void FAModel::onRender(FACamera *camera) {

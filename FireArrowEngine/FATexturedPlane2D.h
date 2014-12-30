@@ -28,11 +28,13 @@ private:
     
     GLint textureUniform;
     GLint modelMatrixUniform;
+    GLint layeruniform;
     
     GLuint texture;
     
     const GLushort numberOfVertices = 4;
     int h[3];
+    int layer = 0;
     
 public:
     
@@ -40,6 +42,7 @@ public:
     ~FATexturedPlane2D();
     void setShader(FAShader *shader);
     void setTexture(GLuint text);
+    void setLayer(int i);
     
 protected:
     virtual void onRender(FACamera *camera);

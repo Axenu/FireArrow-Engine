@@ -15,7 +15,7 @@ FATexturedPlane2D::FATexturedPlane2D() {
 }
 
 void FATexturedPlane2D::setShader(FAShader *shader) {
-    this->shader = shader;
+    this->shader = new FAShader("TexturedPlane2D");
     
     glUseProgram(shader->shaderProgram);
     
@@ -86,7 +86,7 @@ void FATexturedPlane2D::setLayer(int i) {
 void FATexturedPlane2D::onRender(FACamera *camera) {
     glBindVertexArray(myVAO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
-    glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
     
     glUseProgram(shader->shaderProgram);
     

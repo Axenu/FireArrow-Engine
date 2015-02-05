@@ -27,8 +27,11 @@ class FAScene {
 private:
     
     FAText2D *fpsText;
+    FAText2D *vertexCountText;
     bool displayFps;
     bool useStandardCameraControlls;
+    float time;
+    int frames;
     glm::vec2 lastCursorPosition;
     
     void addNode(FANode* node);
@@ -66,7 +69,8 @@ public:
     
 protected:
     std::vector<FAScene*> subviews;
-    std::vector<FANode*> children;
+//    std::vector<FANode*> children;
+    FANode *children;
     std::vector<FAHUDElement*> HUDElements;
     FACamera* camera;
     FACamera* HUDcamera;

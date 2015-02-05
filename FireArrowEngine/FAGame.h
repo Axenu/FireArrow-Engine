@@ -11,6 +11,7 @@
 
 #include "FAEngine.h"
 #include "shadowScene.h"
+#include "normalScene.h"
 
 class FAGame : public FAEngine {
 

@@ -18,7 +18,9 @@ void FAShaderNode::addShader(FAShader *shader) {
 
 FAShader* FAShaderNode::getShader(std::string s) {
     if (shaders->find(s) == shaders->end()) {
-        return new FAShader((s + ".vert").c_str(), (s + ".frag").c_str());
+        FAShader *sh = new FAShader(s);
+        addShader(sh);
+        return sh;
     } else {
         return shaders->at(s);
     }

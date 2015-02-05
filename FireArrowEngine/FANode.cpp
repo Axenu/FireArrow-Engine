@@ -14,11 +14,13 @@ FANode::FANode() {
     name = "FANode";
     modelMatrix = glm::mat4(1.0);
     scale = glm::vec3(1,1,1);
+    vertices = 0;
 }
 
 FANode::FANode(const std::string& name) : name(name), parent(NULL) {
 	modelMatrix = glm::mat4(1.0);
 	scale = glm::vec3(1,1,1);
+    vertices = 0;
 }
 
 #pragma mark Class Methods
@@ -74,7 +76,6 @@ void FANode::update(float dt) {
 }
 
 void FANode::update(float dt, glm::mat4 parentModelMatrix) {
-    if (scale != glm::vec3(1,1,1)) print(scale);
     if (!isActive)
         return;
     modelMatrix = glm::mat4();
@@ -103,6 +104,7 @@ void FANode::setAvtive(bool b) {
 
 void FANode::addNode(FANode *node)
 {
+    this->vertices += node->vertices;
     node->setParent(this);
     children.push_back(node);
 }
@@ -247,6 +249,10 @@ FANode *FANode::getParent() {
 
 std::vector<FANode*>& FANode::getChildren() {
     return children;
+}
+
+long FANode::getVertexCount() {
+    return this->vertices;
 }
 
 #pragma mark Deconstructor

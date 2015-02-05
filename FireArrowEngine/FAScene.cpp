@@ -46,7 +46,8 @@ void FAScene::swapScene(FAScene *scene) {
 }
 
 void FAScene::addChild(FANode* child) {
-    this->children.push_back(child);
+//    this->children.push_back(child);
+    children->addNode(child);
 }
 
 void FAScene::addSubview(FAScene* scene) {
@@ -72,13 +73,23 @@ void FAScene::addHUDElement(FAHUDElement* node) {
 void FAScene::onInit() {
     
     displayFps = true;
+    children = new FANode();
+    camera = new FACamera();
     
     FAFont *font = new FAFont("Helvetica.ttf", 20, windowWidth, windowHeigth);
     fpsText = new FAText2D(font);
-    fpsText->setShader( new FAShader("Text2D"));
+    fpsText->setShader(shaders->getShader("Text2D"));
     fpsText->setText("fps: 60");
     fpsText->setPos(glm::vec3(-0.99,0.95,0));
+    fpsText->setColor(FAColorWhite);
     addHUDElement(fpsText);
+    
+    vertexCountText = new FAText2D(font);
+    vertexCountText->setShader(shaders->getShader("Text2D"));
+    vertexCountText->setText("Vertices: 0");
+    vertexCountText->setPos(glm::vec3(-0.99,0.85,0));
+    vertexCountText->setColor(FAColorWhite);
+    addHUDElement(vertexCountText);
     
     this->init();
 }
@@ -87,8 +98,9 @@ void FAScene::render() {
     if (!isActive) {
         return;
     }
-    for(FANode *node : children)
-        node->render(camera);
+    children->render(camera);
+//    for(FANode *node : children)
+//        node->render(camera);
     for(FAScene *scene : subviews)
         scene->render();
     for(FAHUDElement *node : HUDElements)
@@ -100,7 +112,15 @@ void FAScene::onUpdate(float dt) {
         return;
     }
     if (displayFps) {
-        fpsText->setText("fps: " + std::to_string((1.0/dt)));
+        if (time > 1) {
+            fpsText->setText("fps: " + std::to_string((frames/time)));
+            frames = 0;
+            time = 0;
+        } else {
+            time+=dt;
+            frames++;
+        }
+        vertexCountText->setText("vertices: " + std::to_string(children->getVertexCount()));
     }
     update(dt);
 }

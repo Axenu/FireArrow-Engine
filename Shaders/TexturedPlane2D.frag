@@ -4,9 +4,9 @@ out vec4 outpu;
 
 in vec2 pass_TextureCoord;
 
-uniform sampler2DArray text;
+uniform sampler2D text;
 uniform int layer;
 
 void main(void) {
-    outpu = vec4(texture(text, vec3(pass_TextureCoord,layer)).r, texture(text, vec3(pass_TextureCoord,layer)).r, texture(text, vec3(pass_TextureCoord,layer)).r, 1.0);
+    outpu = vec4(texture(text, pass_TextureCoord).rgb, 1.0);
 }

@@ -2,15 +2,15 @@
 
 uniform vec4 color;
 uniform sampler2DArray shadowMap;
-uniform mat4 modelMatrix;
 uniform mat4 textureMatrix[4];
-uniform mat4 viewMatrix;
 
 in vec3 pass_Normal;
-in vec3 pass_position;
-in vec4 pass_shadowCoordinate;
+in vec4 pass_Position;
 
-out vec4 frag_data;
+
+layout(location = 0) out vec4 frag_data;
+layout(location = 1) out vec4 out_Normal;
+layout(location = 2) out vec4 out_Position;
 
 void main() {
     //shadow
@@ -31,18 +31,34 @@ void main() {
     float shadow = 1.0;
     
     if (index != -1) {
-        vec4 shadowCoordinateWdivide = (textureMatrix[index] * pass_shadowCoordinate) / pass_shadowCoordinate.w ;
-        float diff = 0.0000;
-        float dist = texture(shadowMap,vec3(shadowCoordinateWdivide.st + vec2(diff,diff), index)).r;
+        vec4 shadowCoordinateWdivide = (textureMatrix[index] * pass_Position) / pass_Position.w ;
+
+        float dist = texture(shadowMap,vec3(shadowCoordinateWdivide.st, index)).r;
             if (dist > 0) {
-                if (pass_shadowCoordinate.w > 0.0) {
-                    if (dist - 0.000001 < shadowCoordinateWdivide.z)
-                        shadow =  0.5;
+                if (pass_Position.w > 0.0) {
+                    if (dist - 0.00001 < shadowCoordinateWdivide.z)
+                        shadow =  0.0;
                 }
             }
     }
     
-    frag_data = vec4(color * shadow);
-    frag_data.w = 1.0;
+    //diffuse
+    float ambientComponent = 0.5;
+    const vec3 diffuseColor = vec3(0.5, 0.5, 0.5);
+    
+    vec3 normal = normalize(pass_Normal);
+    vec3 lightDir = normalize(-vec3(1,-1,1));
+    
+    float lambertian = dot(lightDir,normal);
+    
+    if (lambertian < 0) {
+        lambertian = 0;
+    }
+    
+    frag_data = color * ambientComponent + color * shadow * lambertian;
+    frag_data.a = 1.0;
+    
+    out_Normal = vec4(pass_Normal, 1);
+    out_Position = pass_Position;
     
 }

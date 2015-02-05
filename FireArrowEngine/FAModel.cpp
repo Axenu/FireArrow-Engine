@@ -50,6 +50,7 @@ void FAModel::setShader(FAShader *shader) {
     projectionMatrixLocation = glGetUniformLocation(this->shader->shaderProgram,"projectionMatrix");
     viewMatrixLocation = glGetUniformLocation(this->shader->shaderProgram, "viewMatrix");
 	modelMatrixLocation = glGetUniformLocation(this->shader->shaderProgram, "modelMatrix");
+    normalMatrix = glGetUniformLocation(this->shader->shaderProgram, "normalMatrix");
 	textureMatrixLocation = glGetUniformLocation(this->shader->shaderProgram, "textureMatrix");
 	shadowMapLocation = glGetUniformLocation(this->shader->shaderProgram, "shadowMap");
 	
@@ -76,6 +77,9 @@ void FAModel::setShader(FAShader *shader) {
 	if(modelMatrixLocation == -1) {
 		std::cout << "error modelMatrixLocation" << std::endl;
 	}
+    if(normalMatrix == -1) {
+        std::cout << "error normalMatrix" << std::endl;
+    }
 	if(textureMatrixLocation == -1) {
 		std::cout << "error textureMatrixLocation" << std::endl;
 	}
@@ -84,14 +88,15 @@ void FAModel::setShader(FAShader *shader) {
 	}
 }
 
-void FAModel::SetModel(std::vector<GLfloat> vertices, std::vector<GLushort> indices) {
+void FAModel::SetModel(std::vector<GLfloat> vertices, std::vector<GLuint> indices) {
+    
     
     if (shader->shaderProgram == 0) {
         std::cout << "No valid shader for model" << std::endl;
         return;
     }
 	
-    numberOfVertices = indices.size();
+    numberOfVertices = (int)indices.size();
     
     glGenBuffers(1, &myVBO);
     glBindBuffer(GL_ARRAY_BUFFER, myVBO);
@@ -100,7 +105,7 @@ void FAModel::SetModel(std::vector<GLfloat> vertices, std::vector<GLushort> indi
     
     glGenBuffers(1, &myEBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLushort), &indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     
     glGenVertexArrays(1, &myVAO);
@@ -124,6 +129,7 @@ void FAModel::SetModel(std::vector<GLfloat> vertices, std::vector<GLushort> indi
         glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, attributes * sizeof(GLfloat), (GLvoid *) (offset * sizeof(GLfloat)));
     }
     
+    this->vertices += vertices.size()/attributes;
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -222,7 +228,7 @@ void FAModel::SetModel(std::string path) {
         out_vertices.push_back(normal.y);
         out_vertices.push_back(normal.z);
 	}
-    std::vector<GLushort> indices;
+    std::vector<GLuint> indices;
     for (int i = 0; i < out_vertices.size()/6; i++) {
         indices.push_back(i);
     }
@@ -236,7 +242,7 @@ void FAModel::SetFAModel(std::string path) {
     std::vector<int> colorArray;
     std::vector<glm::vec3> materialArray;
     std::vector<GLfloat> vertices;
-    std::vector<GLushort> indices;
+    std::vector<GLuint> indices;
     
     if (file.is_open() && file.is_open()) {
         
@@ -280,7 +286,7 @@ void FAModel::SetFAModel(std::string path) {
                 }
             } else if (f == "i") {
                 file >> count;
-                indices = std::vector<GLushort> ();
+                indices = std::vector<GLuint> ();
                 vertices = std::vector<GLfloat> ();
                 for (int i = 0; i < count * 3; i++) {
                     indices.push_back(i);
@@ -289,7 +295,10 @@ void FAModel::SetFAModel(std::string path) {
                 for (int i = 0; i < count; i++) {
                     file >> v1 >> v2 >> v3 >> n;
                     
-                    int face = colorArray[n];
+                    int face = 0;
+                    if (colorAttribute) {
+                        face = colorArray[n];
+                    }
                     
                     vertices.push_back(vertexArray[v1].x);
                     vertices.push_back(vertexArray[v1].y);
@@ -297,9 +306,11 @@ void FAModel::SetFAModel(std::string path) {
                     vertices.push_back(normalArray[n].x);
                     vertices.push_back(normalArray[n].y);
                     vertices.push_back(normalArray[n].z);
-                    vertices.push_back(materialArray[face].x);
-                    vertices.push_back(materialArray[face].y);
-                    vertices.push_back(materialArray[face].z);
+                    if (colorAttribute) {
+                        vertices.push_back(materialArray[face].x);
+                        vertices.push_back(materialArray[face].y);
+                        vertices.push_back(materialArray[face].z);
+                    }
                     
                     vertices.push_back(vertexArray[v2].x);
                     vertices.push_back(vertexArray[v2].y);
@@ -307,9 +318,11 @@ void FAModel::SetFAModel(std::string path) {
                     vertices.push_back(normalArray[n].x);
                     vertices.push_back(normalArray[n].y);
                     vertices.push_back(normalArray[n].z);
-                    vertices.push_back(materialArray[face].x);
-                    vertices.push_back(materialArray[face].y);
-                    vertices.push_back(materialArray[face].z);
+                    if (colorAttribute) {
+                        vertices.push_back(materialArray[face].x);
+                        vertices.push_back(materialArray[face].y);
+                        vertices.push_back(materialArray[face].z);
+                    }
                     
                     vertices.push_back(vertexArray[v3].x);
                     vertices.push_back(vertexArray[v3].y);
@@ -317,9 +330,11 @@ void FAModel::SetFAModel(std::string path) {
                     vertices.push_back(normalArray[n].x);
                     vertices.push_back(normalArray[n].y);
                     vertices.push_back(normalArray[n].z);
-                    vertices.push_back(materialArray[face].x);
-                    vertices.push_back(materialArray[face].y);
-                    vertices.push_back(materialArray[face].z);
+                    if (colorAttribute) {
+                        vertices.push_back(materialArray[face].x);
+                        vertices.push_back(materialArray[face].y);
+                        vertices.push_back(materialArray[face].z);
+                    }
                 }
             } else {
                 std::cout << "Unknown character! asuming it's a comment: \"" << f << "\"" << std::endl;
@@ -357,16 +372,13 @@ void FAModel::onRender(FACamera *camera) {
 	glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, &modelMatrix[0][0]);
 	glUniform4f(colorUniformLoc, color.x, color.y, color.z, color.w);
 	
-	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_SHORT, NULL);
-	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	
-	glUseProgram(0);
+	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_INT, NULL);
 	
 }
 
 void FAModel::onRender(FACamera *camera, GLuint texture, std::vector<glm::mat4> &textureMatrix) {
+    
+    glm::mat4 normalMatri = glm::transpose(glm::inverse(modelMatrix));
     
 	glBindVertexArray(myVAO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEBO);
@@ -379,13 +391,11 @@ void FAModel::onRender(FACamera *camera, GLuint texture, std::vector<glm::mat4> 
 	glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, &camera->projectionMatrix[0][0]);
 	glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, &camera->viewMatrix[0][0]);
 	glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, &modelMatrix[0][0]);
+    glUniformMatrix4fv(normalMatrix, 1, GL_FALSE, &normalMatri[0][0]);
 	glUniform4f(colorUniformLoc, color.x, color.y, color.z, color.w);
 	glUniformMatrix4fv(textureMatrixLocation, (GLsizei) textureMatrix.size(), GL_FALSE, &textureMatrix[0][0][0]);
     
-	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_SHORT, NULL);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	glUseProgram(0);
+	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_INT, NULL);
 }
 
 void FAModel::onRenderShadow(glm::mat4 c) {
@@ -398,11 +408,8 @@ void FAModel::onRenderShadow(glm::mat4 c) {
     glUniformMatrix4fv(shadowModelMatrixLocation, 1, GL_FALSE, &modelMatrix[0][0]);
 	glUniformMatrix4fv(viewProjectionMatrixLocation, 1, GL_FALSE, &c[0][0]);
 	
-	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_SHORT, NULL);
+	glDrawElements(GL_TRIANGLES, numberOfVertices, GL_UNSIGNED_INT, NULL);
 	
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	glUseProgram(0);
 }
 
 void FAModel::onUpdate(float dt) {

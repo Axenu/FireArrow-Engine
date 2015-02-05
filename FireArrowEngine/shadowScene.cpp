@@ -20,7 +20,7 @@ void shadowScene::init() {
 	globalLightDirection = glm::normalize(glm::vec3(1,-1,1));
     shadowQuality = 4;
     
-    camera = new FACamera(40.0f, (float)windowWidth, windowHeigth, 0.1, 100);
+    camera = new FACamera(40.0f, (float)windowWidth, windowHeigth, 0.1, 400);
     camera->setZ(0);
     camera->setY(0);
     camera->setX(0);
@@ -36,83 +36,127 @@ void shadowScene::init() {
     
     FAModel *m = new FAModel();
     m->setShader(new FAShader("BasicShadow"));
-    m->SetModel("cube");
+    m->SetFAModel("cube.fa");
     m->setScale(1);
     m->setPos(glm::vec3(10,0.5,1));
     m->setColor(FAColorBlue);
     addChild(m);
-    
+
     m = new FAModel();
     m->setShader(new FAShader("FA"));
-    m->SetFAModel("barrel.fa");
+    m->SetFAModel("tree.fa");
     m->setScale(1);
-    m->setPos(glm::vec3(-10,0.5,1));
+    m->setPos(glm::vec3(-10,0,1));
 	m->setScale(glm::vec3(1,1,1));
-    m->setColor(FAColorRed);
     addChild(m);
-    
-    FASkeleton *f = new FASkeleton();
-    f->setShader(new FAShader("Bone"));
-    f->SetFAModel("dog v2.fa");
-    addChild(f);
-    
-    Ground *g = new Ground();
-    g->moveX(-50);
-    g->moveZ(-50);
-    g->setY(0);
-    addChild(g);
-    
-//    FAButton *b = new FAButton();
-//    b->setShader(shaders->getShader("Plane2D"));
-//    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
-//    b->setSize(0.9, 0.5);
-//    b->setID(3);
-//    b->setPos(glm::vec3(0,0,-1));
-//    addHUDElement(b);
+//
+//    m = new FAModel();
+//    m->setShader(new FAShader("FA"));
+//    m->SetFAModel("barrel.fa");
+//    m->setScale(1);
+//    m->setPos(glm::vec3(0,0.5,1));
+//    m->setScale(glm::vec3(1,1,1));
+//    m->setRZ(1);
+//    addChild(m);
 //    
-//    b = new FAButton();
-//    b->setShader(shaders->getShader("Plane2D"));
-//    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
-//    b->setSize(0.4, 0.5);
-//    b->setID(5);
-//    b->setPos(glm::vec3(0,0,1));
-//    addHUDElement(b);
-    
-    plane1 = new FATexturedPlane2D();
-    plane1->setShader(new FAShader("TexturedPlane2D"));
-    plane1->setScale(0.5);
-    plane1->setPos(glm::vec3(-0.5,0.5,0));
-    plane1->setLayer(0);
-//    plane->Deactivate();
-    addHUDElement(plane1);
-    
-    plane2 = new FATexturedPlane2D();
-    plane2->setShader(new FAShader("TexturedPlane2D"));
-    plane2->setScale(0.5);
-    plane2->setPos(glm::vec3(0.5,0.5,0));
-    plane2->setLayer(1);
-    //    plane->Deactivate();
-    addHUDElement(plane2);
-    
-    plane3 = new FATexturedPlane2D();
-    plane3->setShader(new FAShader("TexturedPlane2D"));
-    plane3->setScale(0.5);
-    plane3->setPos(glm::vec3(-0.5,-0.5,0));
-    plane3->setLayer(2);
-    //    plane->Deactivate();
-    addHUDElement(plane3);
-    
-    plane4 = new FATexturedPlane2D();
-    plane4->setShader(new FAShader("TexturedPlane2D"));
-    plane4->setScale(0.5);
-    plane4->setPos(glm::vec3(0.5,-0.5,0));
-    plane4->setLayer(3);
-    //    plane->Deactivate();
-    addHUDElement(plane4);
-    
-//    showWireFrames();
+////    FASkeleton *f = new FASkeleton();
+////    f->setShader(new FAShader("Bone"));
+////    f->SetFAModel("dog v2.fa");
+////    addChild(f);
+//    
+//    for (int x = 0; x < 10; x++) {
+        Ground *g = new Ground();
+        g->moveX(-50);
+        g->moveZ(-50);
+//        g->moveY(x * 2);
+        g->setY(0);
+        addChild(g);
+//    }
+//
+////    FAButton *b = new FAButton();
+////    b->setShader(shaders->getShader("Plane2D"));
+////    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
+////    b->setSize(0.9, 0.5);
+////    b->setID(3);
+////    b->setPos(glm::vec3(0,0,-1));
+////    addHUDElement(b);
+////    
+////    b = new FAButton();
+////    b->setShader(shaders->getShader("Plane2D"));
+////    b->setColor(glm::vec4(0.3,0.3,0.3,0.5));
+////    b->setSize(0.4, 0.5);
+////    b->setID(5);
+////    b->setPos(glm::vec3(0,0,1));
+////    addHUDElement(b);
+//    
+    background = new FATexturedPlane2D();
+    background->setShader(shaders->getShader("TexturedPlane2D"));
+    background->setScale(2);
+    background->update(0);
+//
+//    plane1 = new FATexturedPlane2D();
+//    plane1->setShader(new FAShader("TexturedPlane2D"));
+//    plane1->setScale(0.5);
+//    plane1->setPos(glm::vec3(-0.5,0.5,0));
+//    plane1->setLayer(0);
+//    plane1->Deactivate();
+//    addHUDElement(plane1);
+//    
+//    plane2 = new FATexturedPlane2D();
+//    plane2->setShader(new FAShader("TexturedPlane2D"));
+//    plane2->setScale(0.5);
+//    plane2->setPos(glm::vec3(0.5,0.5,0));
+//    plane2->setLayer(1);
+//        plane2->Deactivate();
+//    addHUDElement(plane2);
+//    
+//    plane3 = new FATexturedPlane2D();
+//    plane3->setShader(new FAShader("TexturedPlane2DDepth"));
+//    plane3->setScale(0.5);
+//    plane3->setPos(glm::vec3(-0.5,-0.5,0));
+//    plane3->setLayer(2);
+//        plane3->Deactivate();
+//    addHUDElement(plane3);
+//    
+//    plane4 = new FATexturedPlane2D();
+//    plane4->setShader(new FAShader("TexturedPlane2D"));
+//    plane4->setScale(0.5);
+//    plane4->setPos(glm::vec3(0.5,-0.5,0));
+//    plane4->setLayer(3);
+//        plane4->Deactivate();
+//    addHUDElement(plane4);
+//    
+////    showWireFrames();
+//    
+//    light1 = new FAPointLight();
+//    light1->setShader(shaders->getShader("pointLight"));
+//    light1->setColor(FAColorRed);
+//    light1->setPos(glm::vec3(0,1,2));
+//    lights.push_back(light1);
+//    
+//    light2 = new FAPointLight();
+//    light2->setShader(shaders->getShader("pointLight"));
+//    light2->setColor(FAColorGreen);
+//    light2->setPos(glm::vec3(0,1,0.5));
+//    lights.push_back(light2);
+
+    for (int i = 0; i < 5; i++) {
+        float x = glm::sin(i/(glm::pi<float>()/80)) * 10;
+        float y = glm::cos(i/(glm::pi<float>()/80)) * 10;
+        FAPointLight *l = new FAPointLight();
+        l->setShader(shaders->getShader("pointLight"));
+        l->setColor(FAColorYellow);
+        l->setPos(glm::vec3(y,1,x));
+        lights.push_back(l);
+    }
     
     setupShadowBuffer();
+    setupDeferredBuffer();
+    
+//    print(glGetString​(GL_RENDERER​));
+//    print((std::)glGetString(GL_VENDOR));
+//    std::cout << glGetString(GL_RENDERER) << std::endl;
+    
     setCursorState(GLFW_CURSOR_DISABLED);
 }
 
@@ -260,13 +304,7 @@ glm::vec3 shadowScene::intersectionBetweenThreePlanes(glm::vec4 p1, glm::vec4 p2
     return solution * glm::vec3(p1.w,p2.w,p3.w);
 }
 
-void shadowScene::render() {
-    //override
-//    calculateShadowCamera();
-    if (!this->isActive) {
-        return;
-    }
-    
+void shadowScene::renderShadows() {
     glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
     glEnable(GL_CULL_FACE);
     glViewport(0,0,this->windowWidth * shadowQuality,this->windowHeigth * shadowQuality);
@@ -275,22 +313,23 @@ void shadowScene::render() {
     shadowMatrix.push_back(calculateShadowCamera(2, 5));
     shadowMatrix.push_back(calculateShadowCamera(5, 20));
     shadowMatrix.push_back(calculateShadowCamera(20, 100));
-    std::vector<glm::mat4> inverseShadowMatrix;
+    inverseShadowMatrix = std::vector<glm::mat4>();
     glm::mat4 m;
     for (int i = 0; i < frustums; i++) {
-//        shadowMatrix.push_back(calculateShadowCamera(0,100));
+        //        shadowMatrix.push_back(calculateShadowCamera(0,100));
         m = glm::translate(glm::mat4(), glm::vec3(0.5,0.5,0.5));
         m = glm::scale(m, glm::vec3(0.5,0.5,0.5));
         m = m * shadowMatrix[i];
         inverseShadowMatrix.push_back(m);
-        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+        glBindFramebuffer(GL_FRAMEBUFFER, shadowFbo);
         glFramebufferTextureLayer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, shadowMap, 0, GLint(i));
         
         glClear(GL_DEPTH_BUFFER_BIT);
         
         glCullFace(GL_FRONT);
-        for(FANode *node : children)
-            node->renderShadow(shadowMatrix[i]);
+//        for(FANode *node : children)
+//            node->renderShadow();
+        children->renderShadow(shadowMatrix[i]);
     }
     
     
@@ -298,24 +337,55 @@ void shadowScene::render() {
     glViewport(0, 0, windowWidth*2, windowHeigth*2);
     glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
     
-//    glEnable(GL_POLYGON_OFFSET_FILL);
-//    glPolygonOffset(factor,units);
+    //    glEnable(GL_POLYGON_OFFSET_FILL);
+    //    glPolygonOffset(factor,units);
     
     glCullFace(GL_BACK);
+}
+
+void shadowScene::render() {
+    //override
+    glEnable(GL_CULL_FACE);
+    
+    if (!this->isActive) {
+        return;
+    }
+    
+//    renderShadows();
     
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-    
-    
-    plane1->setTexture(shadowMap);
-    plane2->setTexture(shadowMap);
-    plane3->setTexture(shadowMap);
-    plane4->setTexture(shadowMap);
+
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, deferredFbo);
+//    glClearColor(0, 0, 0, 0);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    glViewport(0, 0, windowWidth*2, windowHeigth*2);
+
     
     camera->useView();
-    for(FANode *node : children)
-        node->render(camera, shadowMap, inverseShadowMatrix);
-    for(FAScene *scene : subviews)
-        scene->render();
+//    for(FANode *node : children)
+//        node->render(camera, shadowMap, inverseShadowMatrix);
+    children->render(camera, shadowMap, inverseShadowMatrix);
+//    for(FAScene *scene : subviews)
+//        scene->render();
+    
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+//    glClearColor(1, 1, 1, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glDisable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE);
+    
+    background->setTexture(deferredTextures[0]);
+    background->render(HUDcamera);
+    
+//
+//    for (FAPointLight *light : lights)
+//        light->render(camera);
+
+//    plane1->setTexture(deferredTextures[0]);
+//    plane2->setTexture(deferredTextures[1]);
+//    plane3->setTexture(deferredTextures[2]);
+//    plane4->setTexture(deferredTextures[3]);
+    
     glClear(GL_DEPTH_BUFFER_BIT);
     for(FANode* node : HUDElements)
         node->render(HUDcamera);
@@ -335,12 +405,97 @@ void shadowScene::update(float dt) {
     testCamera->setRY(camera->getRY());
     testCamera->setRZ(camera->getRZ());
     
-    for(FANode *node : children)
-        node->update(dt);
+//    for(FANode *node : children)
+//        node->update(dt);
+    children->update(dt);
     for(FAScene *scene : subviews)
         scene->update(dt);
     for(FANode *node : HUDElements)
         node->update(dt);
+}
+
+void shadowScene::setupDeferredBuffer() {
+    
+    //create buffer
+    glGenFramebuffers(1, &deferredFbo);
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, deferredFbo);
+    
+    //create texture
+    glGenTextures(4, deferredTextures);
+    
+    //diffuse
+    glBindTexture(GL_TEXTURE_2D, deferredTextures[0]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, windowWidth*2, windowHeigth*2, 0, GL_RGBA, GL_FLOAT, NULL);
+    glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, deferredTextures[0], 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    //normal
+    glBindTexture(GL_TEXTURE_2D, deferredTextures[1]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, windowWidth*2, windowHeigth*2, 0, GL_RGBA, GL_FLOAT, NULL);
+    glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, deferredTextures[1], 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    //position
+    glBindTexture(GL_TEXTURE_2D, deferredTextures[3]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, windowWidth*2, windowHeigth*2, 0, GL_RGBA, GL_FLOAT, NULL);
+    glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT2, deferredTextures[3], 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    //depth
+    glBindTexture(GL_TEXTURE_2D, deferredTextures[2]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, windowWidth*2, windowHeigth*2, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, deferredTextures[2], 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    GLenum drawBuffers[] = {GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2};
+    glDrawBuffers(3, drawBuffers);
+    
+    GLenum fboStatus;
+    fboStatus = glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER);
+    if (fboStatus != GL_FRAMEBUFFER_COMPLETE) {
+        std::cout << "Creating shadow framebuffer failed with code: " << fboStatus << std::endl;
+        switch (fboStatus)
+        {
+            case GL_FRAMEBUFFER_UNDEFINED:
+                print("No window?");
+                // Oops, no window exists?
+                break;
+            case GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+                print("Incomplete attachment");
+                // Check the status of each attachment
+                break;
+            case GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+                print("No buffers!");
+                // Attach at least one buffer to the FBO
+                break;
+            case GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER:
+                print("Incomplete draw buffer");
+                // Check that all attachments enabled via
+                // glDrawBuffers exist in FBO
+            case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:
+                print("No read buffer!");
+                // Check that the buffer specified via // glReadBuffer exists in FBO
+                break;
+            case GL_FRAMEBUFFER_UNSUPPORTED:
+                print("Unsuported");
+                // Reconsider formats used for attached buffers break;
+            case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:
+                print("Incomplete multisample!");
+                // Make sure the number of samples for each // attachment is the same
+                break;
+            case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS:
+                print("Incorrect number of layers!");
+                // Make sure the number of layers for each // attachment is the same
+                break;
+        }
+    }
+    
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+    
 }
 
 void shadowScene::setupShadowBuffer() {
@@ -361,8 +516,8 @@ void shadowScene::setupShadowBuffer() {
     
     glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
 
-    glGenFramebuffers(1, &fbo);
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbo);
+    glGenFramebuffers(1, &shadowFbo);
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, shadowFbo);
     glDrawBuffers(0, NULL);
     
 //    glFramebufferTexture3D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D_ARRAY, shadowMap, 0, frustums);

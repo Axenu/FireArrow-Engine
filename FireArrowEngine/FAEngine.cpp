@@ -65,11 +65,11 @@ void FAEngine::update() {
 }
 
 void FAEngine::render() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(this->windowColor.r, this->windowColor.g, this->windowColor.b, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     activeScene->render();
     glfwPollEvents();
-    glfwSwapInterval(0);
+//    glfwSwapInterval(0);
     glfwSwapBuffers(window);
 }
 
@@ -165,7 +165,7 @@ void FAEngine::setupWindow() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2); //set opengl target x.2
     glfwWindowHint(GLFW_SAMPLES, this->samples);
     glfwWindowHint(GLFW_DECORATED, isDecorated);
-    glfwWindowHint(GLFW_REFRESH_RATE, 120);
+    glfwWindowHint(GLFW_REFRESH_RATE, 60);
     
     window = glfwCreateWindow(this->windowWidth, this->windowHeigth, this->windowTitle.c_str(), NULL, NULL);
     

@@ -24,6 +24,7 @@ private:
 	
 public:
 	Ground();
+    Ground(int size);
 };
 
 

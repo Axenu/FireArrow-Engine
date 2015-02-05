@@ -39,16 +39,18 @@ void FAText2D::setShader(FAShader *shader) {
     texture_attribute = glGetAttribLocation(shader->shaderProgram, "in_texCoord");
     position_attribute = glGetAttribLocation(shader->shaderProgram, "in_position");
     uniform_tex = glGetUniformLocation(shader->shaderProgram, "text");
+    colorUnifrom = glGetUniformLocation(shader->shaderProgram, "color");
     if(texture_attribute == -1) {
         std::cout << "error textureattrib" << std::endl;
     }
-    
     if(position_attribute == -1) {
         std::cout << "error position_attribute" << std::endl;
     }
-    
     if(uniform_tex == -1) {
         std::cout << "error uniform_tex" << std::endl;
+    }
+    if(colorUnifrom == -1) {
+        std::cout << "error colorUnifrom" << std::endl;
     }
     
     glUseProgram(0);
@@ -56,6 +58,10 @@ void FAText2D::setShader(FAShader *shader) {
 
 void FAText2D::setText(std::string _text) {
     text = _text;
+}
+
+void FAText2D::setColor(glm::vec4 color) {
+    this->color = color;
 }
 
 std::string FAText2D::getText() {
@@ -110,6 +116,7 @@ void FAText2D::renderCharacter(int character, float x, float y, float width, flo
     
     glUseProgram(shader->shaderProgram);
     glUniform1i(uniform_tex, 0);
+    glUniform4fv(colorUnifrom, 1, &color[0]);
     
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, NULL);
     

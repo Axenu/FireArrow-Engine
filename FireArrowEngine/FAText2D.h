@@ -34,9 +34,12 @@ private:
     std::string text;
     GLint texture_attribute;
     GLint position_attribute;
+    GLint colorUnifrom;
     GLint uniform_tex;
     GLuint tex;
     GLuint vbo;
+    
+    glm::vec4 color;
     
     void renderCharacter(int character, float x, float y, float width, float heigth);
     
@@ -47,6 +50,7 @@ public:
     ~FAText2D();
     void setShader(FAShader *shader);
     void setText(std::string _text);
+    void setColor(glm::vec4 color);
 	std::string getText();
     void my_draw_bitmap(FT_Bitmap *bitmap, float x, float y);
 	float getFontSize();

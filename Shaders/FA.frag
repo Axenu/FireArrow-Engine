@@ -7,10 +7,12 @@ uniform mat4 viewMatrix;
 
 in vec3 pass_Normal;
 in vec3 pass_Color;
-in vec3 pass_position;
+in vec4 pass_Position;
 in vec4 pass_shadowCoordinate;
 
-out vec4 frag_data;
+layout(location = 0) out vec4 frag_data;
+layout(location = 1) out vec4 out_Normal;
+layout(location = 2) out vec4 out_Position;
 
 void main() {
     //shadow
@@ -42,7 +44,20 @@ void main() {
         }
     }
     
-    frag_data = vec4(vec4(pass_Color, 1) * shadow);
+    //diffuse
+    float ambientComponent = 0.5;
+    const vec3 diffuseColor = vec3(0.5, 0.5, 0.5);
+    
+    vec3 normal = normalize(pass_Normal);
+    vec3 lightDir = normalize(-vec3(1,-1,1));
+    
+    float lambertian = max(dot(lightDir,normal), 0.0);
+    
+    
+    frag_data = vec4(pass_Color,1) * ambientComponent + vec4(pass_Color,1) * shadow * lambertian;
     frag_data.w = 1.0;
+    
+    out_Normal = vec4(pass_Normal, 1);
+    out_Position = pass_Position;
     
 }

@@ -92,18 +92,19 @@ public:
 	
 #pragma mark Getters
     
-	float getX() ;
-	float getY() ;
-	float getZ() ;
-    float getRX() ;
-    float getRY() ;
-    float getRZ() ;
-	glm::vec3 getScale() ;
+	float getX();
+	float getY();
+	float getZ();
+    float getRX();
+    float getRY();
+    float getRZ();
+	glm::vec3 getScale();
     glm::vec3 getPos();
-    glm::vec3 getRotation() ;
-    std::string getName() ;
+    glm::vec3 getRotation();
+    std::string getName();
     FANode* getParent();
     std::vector<FANode*>& getChildren();
+    long getVertexCount();
     
 #pragma mark Deconstructor
     
@@ -122,6 +123,7 @@ protected:
     glm::vec3 position;
     glm::vec3 rotation;
     glm::vec3 scale;
+    long vertices;
 };
 
 #endif /* defined(__FireArrow__FANode__) */

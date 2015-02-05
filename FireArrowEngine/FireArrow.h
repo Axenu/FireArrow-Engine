@@ -24,6 +24,7 @@
 #define FAColorDarkGreen glm::vec4(0,0.5,0,1)
 #define FAColorBlue glm::vec4(0,0,1,1)
 #define FAColorDarkBlue glm::vec4(0,0,0.5,1)
+#define FAColorLightBlue glm::vec4(0.5,0.5,1,1)
 #define FAColorBlack glm::vec4(0,0,0,1)
 #define FAColorWhite glm::vec4(1,1,1,1)
 #define FAColorMagenta glm::vec4(0,1,1,1)

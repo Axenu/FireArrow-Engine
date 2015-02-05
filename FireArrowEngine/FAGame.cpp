@@ -17,13 +17,14 @@ void FAGame::init() {
 }
 
 FAScene* FAGame::setInitialScene() {
-    return new shadowScene();
+    return new normalScene();
 }
 
 void FAGame::setWindowAttributes() {
-    this->setWindowsSize(1024, 720);
-    this->setSamples(8);
+    this->setWindowsSize(1920, 1380);
+    this->setSamples(1);
     this->setDecorated(false);
+//    this->setWindowColor(glm::vec3(95.0/255.0,62.0/255.0,39.0/255.0));
 }
 
 FAGame::~FAGame() {
